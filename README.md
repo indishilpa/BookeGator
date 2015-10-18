@@ -4,3 +4,5 @@ This is a book sharing application with use limited to university of Florida stu
 We have created a login with gator link using ldap
 
 Hello there
+
+Added to Bookegator today.
