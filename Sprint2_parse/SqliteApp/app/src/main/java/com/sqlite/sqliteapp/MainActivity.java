@@ -1,4 +1,4 @@
-package com.sqlite.sqliteapp;
+ package com.sqlite.sqliteapp;
 
 import android.app.AlertDialog;
 import android.app.Application;
@@ -61,7 +61,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toggleMenu(View v){
+
         this.root.toggleMenu();
+    }
+
+    public void openBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Add Books")){
+            Intent intent = new Intent(this, book_upload.class);
+            startActivity(intent);
+        }
     }
 
     public void addData(){
