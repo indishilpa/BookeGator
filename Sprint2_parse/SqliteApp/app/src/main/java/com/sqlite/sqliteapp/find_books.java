@@ -1,5 +1,6 @@
 package com.sqlite.sqliteapp;
 
+import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -20,38 +21,30 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class find_books extends AppCompatActivity {
+public class find_books extends ListActivity {
 
-    ListView lv;
+    //ListView lv;
     SearchView search;
     TextView textView3;
-
-    String names[] ={ "Praks", "Kunal", "Shilpa"};
-//    Vector<String> names1;
-
     ArrayAdapter<String> adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_books);
+        //lv = (ListView) findViewById(R.id.listView);
 
-        lv = (ListView) findViewById(R.id.listView);
-
-        Parse.initialize(this, "cSMb5B1Yob7iSIyMv8KaFn3odTgAQdBwWx9mNcWD", "0dWn9WVTrFj5laRyvxboYSftoCByWnWw22QLaq06");
-        final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
-
-       // SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
-        //search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+        //Parse.initialize(this, "cSMb5B1Yob7iSIyMv8KaFn3odTgAQdBwWx9mNcWD", "0dWn9WVTrFj5laRyvxboYSftoCByWnWw22QLaq06");
+        //final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
 
         search = (SearchView)findViewById(R.id.searchView);
-        textView3 = (TextView)findViewById(R.id.textView3);
+       //textView3 = (TextView)findViewById(R.id.textView3);
         search.setQueryHint("SearchView");
-
-
 
         //*** setOnQueryTextListener ***
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -59,17 +52,25 @@ public class find_books extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
                 query2.whereContains("Title", search.getQuery().toString());
+                //final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
+                //query3.whereMatchesKeyInQuery("Title", "Author",query2);
                 query2.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
                         if (e == null) {
-
+                            ArrayList<String> names = new ArrayList<String>();
+                            int i = 0;
                             for (ParseObject nameObject : objects) {
                                 String name = nameObject.get("Author").toString();
                                 Log.d("Title", name);
-                                textView3.setText(name);
-                                //names1.add(name);
+                                names.add(i, name);
+                                //adapter.notifyDataSetChanged();
+                                i++;
                             }
+                            adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
+                            getListView().setAdapter(adapter);
+                            //names =new ArrayList<String>();
+
 
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
@@ -81,16 +82,13 @@ public class find_books extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                textView3.setText("no text");
+                //textView3.setText("no text");
                 //textView3.getText().length();
                 return false;
             }
 
 
         });
-
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
-        lv.setAdapter(adapter);
 
     }
 
@@ -116,5 +114,3 @@ public class find_books extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
