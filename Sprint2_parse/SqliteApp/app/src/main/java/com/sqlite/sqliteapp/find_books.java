@@ -3,11 +3,14 @@ package com.sqlite.sqliteapp;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,20 +30,15 @@ import java.util.Vector;
 
 public class find_books extends ListActivity {
 
-    //ListView lv;
     SearchView search;
-    TextView textView3;
     ArrayAdapter<String> adapter;
+    ArrayList<String> objectid = new ArrayList<String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_books);
-        //lv = (ListView) findViewById(R.id.listView);
-
-        //Parse.initialize(this, "cSMb5B1Yob7iSIyMv8KaFn3odTgAQdBwWx9mNcWD", "0dWn9WVTrFj5laRyvxboYSftoCByWnWw22QLaq06");
-        //final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
 
         search = (SearchView)findViewById(R.id.searchView);
        //textView3 = (TextView)findViewById(R.id.textView3);
@@ -52,8 +50,7 @@ public class find_books extends ListActivity {
             public boolean onQueryTextSubmit(String query) {
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
                 query2.whereContains("Title", search.getQuery().toString());
-                //final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
-                //query3.whereMatchesKeyInQuery("Title", "Author",query2);
+
                 query2.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -64,12 +61,23 @@ public class find_books extends ListActivity {
                                 String name = nameObject.get("Author").toString();
                                 Log.d("Title", name);
                                 names.add(i, name);
-                                //adapter.notifyDataSetChanged();
+                                objectid.add(nameObject.getObjectId());
+
                                 i++;
                             }
                             adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
                             getListView().setAdapter(adapter);
-                            //names =new ArrayList<String>();
+                            getListView().setOnItemClickListener(
+                                    new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent intent = new Intent(parent.getContext(), BookDetails.class);
+                                            intent.putExtra("oid", objectid.get(position));
+                                            startActivityForResult(intent, 0);
+
+                                        }
+                                    }
+                            );
 
 
                         } else {
