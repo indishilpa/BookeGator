@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SqliteApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main3">MainActivity3</string>
+    <string name="title_activity_book_details">BookDetails</string>
+    <string name="title_activity_find_books">find_books</string>
+    <string name="menu_myAccount">My Account</string>
+    <string name="menu_addBooks">Add Books</string>
+    <string name="menu_searchBooks">Search Books</string>
+    <string name="menu_wishList">Wish list</string>
+
+</resources>
