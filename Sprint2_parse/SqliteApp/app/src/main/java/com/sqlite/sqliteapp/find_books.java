@@ -37,13 +37,8 @@ public class find_books extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_books);
-        //lv = (ListView) findViewById(R.id.listView);
-
-        //Parse.initialize(this, "cSMb5B1Yob7iSIyMv8KaFn3odTgAQdBwWx9mNcWD", "0dWn9WVTrFj5laRyvxboYSftoCByWnWw22QLaq06");
-        //final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
 
         search = (SearchView)findViewById(R.id.searchView);
-       //textView3 = (TextView)findViewById(R.id.textView3);
         search.setQueryHint("SearchView");
 
         //*** setOnQueryTextListener ***
@@ -52,8 +47,6 @@ public class find_books extends ListActivity {
             public boolean onQueryTextSubmit(String query) {
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
                 query2.whereContains("Title", search.getQuery().toString());
-                //final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
-                //query3.whereMatchesKeyInQuery("Title", "Author",query2);
                 query2.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -64,13 +57,10 @@ public class find_books extends ListActivity {
                                 String name = nameObject.get("Author").toString();
                                 Log.d("Title", name);
                                 names.add(i, name);
-                                //adapter.notifyDataSetChanged();
                                 i++;
                             }
                             adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
                             getListView().setAdapter(adapter);
-                            //names =new ArrayList<String>();
-
 
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
@@ -82,9 +72,7 @@ public class find_books extends ListActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //textView3.setText("no text");
-                //textView3.getText().length();
-                return false;
+               return false;
             }
 
 

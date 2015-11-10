@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="toggleMenu"
-            android:text="My Account"
+            android:text="@string/menu_myAccount"
             android:height="60sp"
             android:paddingTop="10sp"
             android:paddingBottom="10sp"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="openBook"
-            android:text="Add Books"
+            android:text="@string/menu_addBooks"
             android:height="60sp"
             android:textSize="18sp" />
 
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="toggleMenu"
-            android:text="Search Books"
+            android:text="@string/menu_searchBooks"
             android:height="60sp"
             android:textSize="18sp" />
 
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="toggleMenu"
-            android:text="Wish list"
+            android:text="@string/menu_wishList"
             android:height="60sp"
             android:textSize="18sp" />
 
