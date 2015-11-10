@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-e572ce964049903b3537660b90d8b48958b4af22.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.1\44780c2cf98f6a3cf4e77f1234d644758b329201\bolts-android-1.2.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="44780c2cf98f6a3cf4e77f1234d644758b329201">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.1-96566ef1281b0cc9e2cb95d5269260f5d5654e8e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-bdf378ce6fab4072ea0fc5fad19dfc669050ec7c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-6db662e3c9639a6424c93a8bcee90c1f2a78b34d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-e16e7223aaf3c636e00f30e61048155d39c2aa0a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-52979a6f2f7294c93197f9d7dfb5cee15eb1fa9e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-024134b0ffed77f88580a82d87f08a5a150447ba.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-3039e19f4742c2960de28b80659046652366236a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-d30ad0a3297e57274087280bcfc2e31553f517b7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-73766029526da051a87acfd6604db77c98633d97.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-c32675dd9595e1255712c869bbe8cde195544d1a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-41beaafb97304315ba38cab009a4747679af0b3a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-f5b1054d280d470cbde418a380d422044ab9cb8c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-86815b0d51925fdfc45a47a9e80c789d6164910d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-702a8a8ac73c8b7483cf1ca30ae21e9298b324a3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-91d6d59473b04450197039c73df739fdf8bc3dc9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-6e9b0206812fb5a2b7a0ca04e8ae44f7af88c313.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-9198ae944f2fbce019bdb0eeaf3d2bd93cc9acab.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-734b623d60927a795ca6f6faba99cad1390415c1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-6a24a88e5e3121e0ab7a00ae45ad8e328a4f49ea.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\.gradle\caches\modules-2\files-2.1\com.parse\parse-android\1.10.3\36366e460af2c0f224bb8f70b64e3302f638b138\parse-android-1.10.3.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="36366e460af2c0f224bb8f70b64e3302f638b138">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\parse-android-1.10.3-0fc1938a23155c48fa9a2af42ec882dbe976851a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-a4a655d70ad940ea369feb3d389dd47bf2bd593b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-1dbccffb10bdcd209a8fc28d1f83155dea455361.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-8f3bda2868361d55bb72ca1e2817448414bf9a2c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-37227a065a13aeaaf53a13a1fdeb61fb1b9c1e86.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-52cc9dc3a4e02b75c6d25505d19ec67825fe4fb3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-5182aca61a88708e6486af7637b9622174510105.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-a53a2d5a60f9b074f2d5e59319f72099191ef132.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\libs\unboundid-ldapsdk-se.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="62876a38e88a1c4ea177a448b99e1e9f25a6587e">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\unboundid-ldapsdk-se-fcc290f35f43a8c56f2d64a433801fca11d9e4f7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="C:\Users\Prakriti\Documents\GitHub\BookeGator\Sprint2_parse\SqliteApp\app\build\intermediates\pre-dexed\debug\classes-29f723639a7e5859226753913573f7f9ea05a97a.jar" />
+    </item>
+
+</items>
