@@ -49,10 +49,7 @@ public class find_books extends ListActivity {
             public boolean onQueryTextSubmit(String query) {
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
                 query2.whereContains("Title", search.getQuery().toString());
-<<<<<<< HEAD
-=======
 
->>>>>>> cbdbca022c048d27de411c97669199040146e1e7
                 query2.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -63,17 +60,11 @@ public class find_books extends ListActivity {
                                 String name = nameObject.get("Author").toString();
                                 Log.d("Title", name);
                                 names.add(i, name);
-<<<<<<< HEAD
-=======
                                 objectid.add(nameObject.getObjectId());
-
->>>>>>> cbdbca022c048d27de411c97669199040146e1e7
                                 i++;
                             }
                             adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
                             getListView().setAdapter(adapter);
-<<<<<<< HEAD
-=======
                             getListView().setOnItemClickListener(
                                     new AdapterView.OnItemClickListener() {
                                         @Override
@@ -85,8 +76,6 @@ public class find_books extends ListActivity {
                                         }
                                     }
                             );
-
->>>>>>> cbdbca022c048d27de411c97669199040146e1e7
 
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
