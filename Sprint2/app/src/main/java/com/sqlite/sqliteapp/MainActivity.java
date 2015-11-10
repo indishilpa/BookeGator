@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,17 +27,22 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+import com.sqlite.sqliteapp.Views.BookeUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
 public class MainActivity extends AppCompatActivity {
+    public final static String EXTRA_MESSAGE = "com.sqlite.sqliteapp.MESSAGE";
 
     DatabaseHelper myDB;
     EditText username, editPhone, editEmail, editAddress, editUfid;
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ParseFile parseFile;
     String imgPath;
     private String selectedImagePath = "";
+    private BookeUser bookUser;
 
     String name, phone_no, email;
 
@@ -93,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     private void savePhoto(byte[] data) {
 
         parseFile = new ParseFile("image.jpg", data);
-        parseFile.saveInBackground();
+     //   parseFile.saveInBackground();
 
     /*    final ParseObject pObject = new ParseObject("ExampleObject");
         pObject.put("username", "alice");
@@ -119,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
-
     }
 
     public String getImagePath() {
@@ -238,27 +244,51 @@ public class MainActivity extends AppCompatActivity {
                         boolean invalid = validate_data(name, phone_no, email);
 
                         if (!invalid) {
-
-                            ParseObject userB = new ParseObject("BookUser");
-                            userB.put("Username", name);
-                            userB.put("Email", email);
+                            ParseUser userB = new ParseUser();
+                            userB.setUsername(name);
+                            userB.setEmail(email);
+                            userB.setPassword("213");
                             userB.put("PhoneNumber", phone_no);
-                            userB.put("image", parseFile);
                             userB.put("Address", editAddress.getText().toString());
 
-                            userB.saveInBackground(new SaveCallback() {
+                      /*      bookUser.setAddress(editAddress.getText().toString());
+                            bookUser.setPhoneNumber(phone_no);
+                            bookUser.setUsername(name);
+                            bookUser.setEmailAddress(email);*/
+
+                            userB.signUpInBackground(new SignUpCallback() {
                                 public void done(ParseException e) {
                                     if (e == null) {
                                         Toast.makeText(getApplicationContext(),
-                                                "Successfully Signed up, please log in.",
+                                                "Successfully Signed up.",
                                                 Toast.LENGTH_LONG).show();
                                     } else {
                                         Toast.makeText(getApplicationContext(),
-                                                "Sign up Error : " + e.getMessage(), Toast.LENGTH_LONG)
+                                                "Sign up Error", Toast.LENGTH_LONG)
                                                 .show();
                                     }
                                 }
                             });
+
+                            if (parseFile != null) {
+                                parseFile.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getApplicationContext(),
+                                                    "File could not be added.",
+                                                    Toast.LENGTH_LONG).show();
+                                        } else {
+                                            ParseUser currentUser = ParseUser.getCurrentUser();
+                                            currentUser.put("image", parseFile);
+                                            currentUser.saveEventually();
+
+                                            Toast.makeText(getApplicationContext(),
+                                                    "added image to database", Toast.LENGTH_LONG)
+                                                    .show();
+                                        }
+                                    }
+                                });
+                            }
                         }
                     }
                 }
@@ -313,5 +343,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void findUserName(View view) {
+        String user2 = "shilpa goel";
+
+        Intent intent = new Intent(this, ViewActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, user2);
+        startActivity(intent);
     }
 }
