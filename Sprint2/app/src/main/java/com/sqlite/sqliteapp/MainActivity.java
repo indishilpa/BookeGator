@@ -44,7 +44,7 @@ import com.sqlite.sqliteapp.Views.MenuFly;
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.sqlite.sqliteapp.MESSAGE";
 
-    DatabaseHelper myDB;
+   // DatabaseHelper myDB2;
     EditText username, editPhone, editEmail, editAddress, editUfid;
     Button addDataButton, viewDataButton;
     MenuFly root;
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-    public void viewAll(){
+  /*  public void viewAll(){
         viewDataButton.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -315,12 +315,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-    }
-    public boolean Exists(String id) {
+    }*/
+   /* public boolean Exists(String id) {
         if(myDB.Exists(id))
             return true;
         return false;
-    }
+    }*/
     public void showMessage(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
