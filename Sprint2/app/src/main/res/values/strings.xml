@@ -6,4 +6,6 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_main3">MainActivity3</string>
     <string name="button_send">View account</string>
+    <string name="title_activity_book_details">BookDetails</string>
+    <string name="title_activity_find_books">find_books</string>
 </resources>

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="openBook"
-            android:text="Add Book"
+            android:text="Add Books"
             android:height="60sp"
             android:textSize="18sp" />
 
@@ -54,6 +54,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -108,13 +109,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="My Details"
+                android:text="My Books"
                 android:id="@+id/textView2"
                 android:padding="5dp"
                 android:textSize="22sp"
                 android:textColor="#1a1a1a" />
         </LinearLayout>
-
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -130,34 +130,9 @@
                 android:id="@+id/bottomsection"
                 android:background="#ffffe6">
 
-                <RelativeLayout android:layout_weight="1.5" android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:gravity="center" >
-                    <ImageView
-                        android:id="@+id/iv"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/myimage"
-                        android:layout_marginTop="72dp" />
-
-                    <ImageButton
-                        android:id="@+id/imageButton1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:padding="4dp"
-                        android:layout_margin="8dp"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/edit_states"
-                        android:src="@drawable/ic_action_edit"
-                        android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true" />
-
-                </RelativeLayout>
 
                 <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -172,16 +147,15 @@
                     android:focusable="true">
 
                     <EditText
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/ufid"
-                        android:text="UFID - "
-                        android:layout_marginTop="15dp"
-                        android:focusable="false"
-                        android:elegantTextHeight="false"
-                        android:textColor="#000000"
-                        android:textColorHighlight="#000000"
-                        android:textColorHint="#000000" />
+                        android:inputType="textCapWords|textNoSuggestions"
+                        android:ems="10"
+                        android:id="@+id/title"
+                        android:layout_weight="1"
+                        android:textIsSelectable="false"
+                        android:hint="Title"
+                        android:textColorHint="#4a4a4a"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -204,11 +178,10 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName|textCapWords|textNoSuggestions"
                         android:ems="10"
-                        android:layout_marginTop="15dp"
-                        android:id="@+id/name"
+                        android:id="@+id/author"
                         android:layout_weight="1"
                         android:textIsSelectable="false"
-                        android:hint="Name (required)"
+                        android:hint="Author"
                         android:textColorHint="#4a4a4a"/>
                 </LinearLayout>
 
@@ -228,11 +201,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
-                        android:layout_marginTop="15dp"
                         android:ems="10"
-                        android:id="@+id/phone"
+                        android:id="@+id/isbn"
                         android:layout_weight="1"
-                        android:hint="Phone Number (###-#######)"
+                        android:hint="ISBN # (Optional)"
                         android:textColorHint="#4a4a4a"/>
                 </LinearLayout>
 
@@ -249,14 +221,12 @@
                     android:focusable="true">
 
                     <EditText
-                        android:id="@+id/email"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
                         android:ems="10"
-                        android:layout_marginTop="15dp"
+                        android:id="@+id/edition"
                         android:layout_weight="1"
-                        android:hint="Email (required)"
+                        android:hint="Edition (Optional)"
                         android:textColorHint="#4a4a4a"/>
                 </LinearLayout>
 
@@ -274,29 +244,67 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
+                        android:inputType="phone"
                         android:ems="10"
-                        android:id="@+id/address"
-                        android:layout_marginTop="15dp"
+                        android:id="@+id/year_of_publication"
                         android:layout_weight="1"
-                        android:hint="Address"
+                        android:hint="Year of Publication (Optional)"
+                        android:textColorHint="#4a4a4a"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingBottom="10sp"
+                    android:touchscreenBlocksFocus="true">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:ems="10"
+                        android:id="@+id/course"
+                        android:layout_weight="1"
+                        android:hint="Related Course (Optional)"
+                        android:textColorHint="#4a4a4a"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:paddingTop="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingBottom="10sp"
+                    android:touchscreenBlocksFocus="true">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:ems="10"
+                        android:id="@+id/depositAmount"
+                        android:layout_weight="1"
+                        android:hint="Deposit Amount (Optional)"
                         android:textColorHint="#4a4a4a"/>
                 </LinearLayout>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Submit"
-                    android:id="@+id/submitbutton"
-                    android:layout_marginTop="15dp"
+                    android:text="Add Book"
+                    android:id="@+id/addBook"
                     android:layout_gravity="center"
                     android:alpha="0.7" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/button_send"
-                    android:onClick="findUserName" />
 
             </LinearLayout>
         </ScrollView>

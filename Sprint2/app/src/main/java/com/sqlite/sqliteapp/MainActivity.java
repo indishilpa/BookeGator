@@ -215,6 +215,23 @@ public class MainActivity extends AppCompatActivity {
         this.root.toggleMenu();
     }
 
+    public void openBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Add Book")){
+            Intent intent = new Intent(this, book_upload.class);
+            startActivity(intent);
+        }
+    }
+    public void searchBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Search Books")){
+            Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+
     public Boolean validate_data(String name, String phone_no, String email){
         Boolean invalid = false;
         Pattern pattern = Patterns.EMAIL_ADDRESS;

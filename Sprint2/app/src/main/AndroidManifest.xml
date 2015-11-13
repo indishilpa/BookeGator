@@ -44,5 +44,17 @@
             android:name=".ViewActivity"
             android:label="viewScreen">
         </activity>
+        <activity
+            android:name=".book_upload"
+            android:label="@string/title_activity_book_details" >
+        </activity>
+        <activity
+            android:name=".find_books"
+            android:label="@string/title_activity_find_books" >
+        </activity>
+        <activity
+            android:name=".BookDetails"
+            android:label="@string/title_activity_book_details" >
+        </activity>
     </application>
 </manifest>
