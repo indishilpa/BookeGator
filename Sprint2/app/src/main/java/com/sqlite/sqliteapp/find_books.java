@@ -40,13 +40,13 @@ public class find_books extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_books);
-        /*this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.book_upload, null);
-        setContentView(root);*/
+        //setContentView(root);
+        this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_find_books, null);
+        setContentView(root);
 
 
         search = (SearchView)findViewById(R.id.searchView);
-       //textView3 = (TextView)findViewById(R.id.textView3);
+        //textView3 = (TextView)findViewById(R.id.textView3);
         search.setQueryHint("SearchView");
 
         //*** setOnQueryTextListener ***

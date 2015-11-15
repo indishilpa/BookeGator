@@ -16,17 +16,20 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.sqlite.sqliteapp.Views.MenuFly;
 
 import java.util.List;
 
 public class BookDetails extends AppCompatActivity {
+    MenuFly root;
     TextView textTitle, textAuthor, textEdition, textYear, textDeposit, textISBN;
     Button contactOwner, issueRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_details);
+        this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_book_details, null);
+        setContentView(root);
 
         textTitle = (TextView)findViewById(R.id.title);
         textAuthor = (TextView)findViewById(R.id.author);
@@ -73,6 +76,28 @@ public class BookDetails extends AppCompatActivity {
         });
 
     }
+
+    public void toggleMenu(View v){
+        this.root.toggleMenu();
+    }
+
+    public void openBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Add Book")){
+            Intent intent = new Intent(this, book_upload.class);
+            startActivity(intent);
+        }
+    }
+    public void searchBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Search Books")){
+            Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
