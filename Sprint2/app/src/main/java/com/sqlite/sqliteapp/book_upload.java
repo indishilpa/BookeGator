@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
 public class book_upload extends AppCompatActivity {
@@ -75,6 +76,8 @@ public class book_upload extends AppCompatActivity {
                             uploadBooks.put("Year_Of_Publication", yearOfPublication);
                             uploadBooks.put("Related_Course", related_course);
                             uploadBooks.put("Deposit_Amount", depositAmount);
+                            ParseUser user= ParseUser.getCurrentUser();
+                            uploadBooks.put("Owner1",user);
                            //****** uploadBooks.put("UserID", user.getObjectId());
                             uploadBooks.saveInBackground();
                         }

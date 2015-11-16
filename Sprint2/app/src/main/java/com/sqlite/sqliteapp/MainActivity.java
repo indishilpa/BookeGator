@@ -232,6 +232,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void myBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Books")){
+            Intent intent = new Intent(this, my_book.class);
+            startActivity(intent);
+        }
+    }
+
     public Boolean validate_data(String name, String phone_no, String email){
         Boolean invalid = false;
         Pattern pattern = Patterns.EMAIL_ADDRESS;
