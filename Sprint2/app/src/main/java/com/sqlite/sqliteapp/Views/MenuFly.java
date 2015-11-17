@@ -16,9 +16,7 @@ import com.sqlite.sqliteapp.Main2Activity;
 import com.sqlite.sqliteapp.MainActivity;
 
 import java.util.logging.LogRecord;
-/**
- * Created by Prakriti on 10/7/2015.
- */
+
 public class MenuFly extends LinearLayout {
     private View menu;
     private View content;

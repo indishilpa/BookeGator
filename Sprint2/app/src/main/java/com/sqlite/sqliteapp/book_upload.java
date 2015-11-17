@@ -11,8 +11,11 @@ import android.widget.EditText;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
+
+import java.util.List;
 
 public class book_upload extends AppCompatActivity {
     MenuFly root;
@@ -35,9 +38,6 @@ public class book_upload extends AppCompatActivity {
         editRelated_course = (EditText)findViewById(R.id.course);
         editDepositAmount = (EditText)findViewById(R.id.depositAmount);
         addBooks = (Button)findViewById(R.id.addBook);
-
-       // Parse.enableLocalDatastore(this);
-       // Parse.initialize(this, "cSMb5B1Yob7iSIyMv8KaFn3odTgAQdBwWx9mNcWD", "0dWn9WVTrFj5laRyvxboYSftoCByWnWw22QLaq06");
 
         addBookData();
     }
@@ -78,6 +78,10 @@ public class book_upload extends AppCompatActivity {
                             uploadBooks.put("Deposit_Amount", depositAmount);
                             ParseUser user= ParseUser.getCurrentUser();
                             uploadBooks.put("Owner1",user);
+
+                            int x = user.getInt("BooksNum");
+
+                            user.put("BooksNum", x +1 );
                            //****** uploadBooks.put("UserID", user.getObjectId());
                             uploadBooks.saveInBackground();
                         }
