@@ -8,15 +8,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDetails extends AppCompatActivity {
     MenuFly root;
@@ -45,12 +54,64 @@ public class BookDetails extends AppCompatActivity {
         tx.setTypeface(cd);
         viewAll(objectId);
 
+        final ParseImageView imageView = (ParseImageView) findViewById(R.id.icon);
+
+        final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
+        query2.getInBackground(objectId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    ParseFile image = object.getParseFile("image");
+                    imageView.setParseFile(image);
+
+                    imageView.loadInBackground(new GetDataCallback() {
+                        public void done(byte[] data, ParseException e) {
+                            // The image is loaded and displayed!
+                        }
+                    });
+                }
+            }
+        });
+
+        final Button contactOwner = (Button)findViewById(R.id.contactOwner);
+        contactOwner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                contactOwner(objectId);
+            }
+        });
+
         issueRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 issueRequest(objectId);
             }
         });
+
+    }
+
+    private void create(ParseUser u){
+        Intent intent = new Intent(this, ViewActivity.class);
+        try {
+            intent.putExtra("MESSAGE", u.fetchIfNeeded().getUsername());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        startActivity(intent);
+    }
+
+    private void contactOwner(String objectId) {
+        final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
+        query2.getInBackground(objectId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    ParseUser u = object.getParseUser("Owner1");
+                    create(u);
+                }
+            }
+        });
+
 
     }
 
@@ -98,6 +159,7 @@ public class BookDetails extends AppCompatActivity {
         }
     }
 
+
     public void issueRequest(final String oid){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
         Log.d("tag", "inside");
@@ -110,6 +172,8 @@ public class BookDetails extends AppCompatActivity {
                     issuedBooks.put("BookObject", object);
                     try {
                         issuedBooks.save();
+                        Toast.makeText(getApplicationContext(), "Issued.",
+                                Toast.LENGTH_LONG).show();
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }

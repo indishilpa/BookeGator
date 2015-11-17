@@ -25,7 +25,6 @@ import java.util.List;
 public class ViewActivity extends Activity{
     private RatingBar ratingBar;
     private TextView nameValue, emailValue, phoneValue;
-    private Button button;
     MenuFly root;
 
     private ParseUser rateThisUser;
@@ -37,7 +36,13 @@ public class ViewActivity extends Activity{
         setContentView(root);
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        Button button = (Button) findViewById(R.id.btnSave);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
 
+            }
+        });
         Intent intent = getIntent();
         String EXTRA_MESSAGE = "MESSAGE";
         final String userName = intent.getStringExtra(EXTRA_MESSAGE);
@@ -51,7 +56,7 @@ public class ViewActivity extends Activity{
                     if (e == null) {
                         rateThisUser = objects.get(0);
 
-                        final String existing_rating = rateThisUser.getString("Rating");
+                        String existing_rating = rateThisUser.getString("Rating");
                         ParseFile image = rateThisUser.getParseFile("image");
                         final ParseImageView imageView = (ParseImageView) findViewById(R.id.icon);
                         imageView.setParseFile(image);
@@ -81,18 +86,20 @@ public class ViewActivity extends Activity{
                         nameValue.setText(String.valueOf(rateThisUser.getString("ActualName")));
                         phoneValue.setText(String.valueOf(rateThisUser.getString("PhoneNumber")));
 
-                        if (existing_rating != null && !existing_rating.equals("0.0")) {
+                        if (existing_rating != null) {
                             ratingBar.setRating(Float.parseFloat(existing_rating));
                         }else{
+                            existing_rating = "0.0";
                             ratingBar.setRating(Float.parseFloat(Float.toString(newRating)));
                         }
 
                         final float finalNewRating = newRating;
+                        final String finalExisting_rating = existing_rating;
                         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
                             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                                float rate = (float) ((((Float.parseFloat(existing_rating) + rating ) / 2 )  * 0.5) + finalNewRating);
-
+                                float rate = (float) ((((Float.parseFloat(finalExisting_rating) + rating ) / 2 )  * 0.5) + finalNewRating);
+                                ratingBar.setRating(rating);
                                 rateThisUser.put("Rating", String.valueOf(rate));
                                 rateThisUser.saveEventually();
                             }
@@ -103,6 +110,22 @@ public class ViewActivity extends Activity{
                 }
             }
         });
+    }
+
+    public void addListenerOnButton() {
+
+        //   ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        //  button = (Button) findViewById(R.id.button);
+
+     /*   button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ViewActivity.this, String.valueOf(ratingBar.getRating()), Toast.LENGTH_LONG).show();
+            }
+
+        });*/
+
     }
 
     public void toggleMenu(View v){
