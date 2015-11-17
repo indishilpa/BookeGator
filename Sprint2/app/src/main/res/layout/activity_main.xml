@@ -55,6 +55,13 @@
             android:text="My Books"
             android:height="60sp"
             android:textSize="18sp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logOut"
+            android:text="Logout"
+            android:height="60sp"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
@@ -299,12 +306,6 @@
                     android:layout_marginTop="15dp"
                     android:layout_gravity="center"
                     android:alpha="0.7" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/button_send"
-                    android:onClick="findUserName" />
 
             </LinearLayout>
         </ScrollView>

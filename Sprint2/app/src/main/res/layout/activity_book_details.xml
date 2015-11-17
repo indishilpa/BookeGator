@@ -47,6 +47,13 @@
             android:text="Wish list"
             android:height="60sp"
             android:textSize="18sp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logOut"
+            android:text="Logout"
+            android:height="60sp"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
@@ -254,7 +261,7 @@
                     android:text="Contact Owner"
                     android:id="@+id/contactOwner"
                     android:layout_gravity="center"
-                    android:alpha="0.7" />
+                    android:alpha="0.7"  android:onClick="findUserName"/>
 
                 <Button
                     android:layout_width="wrap_content"

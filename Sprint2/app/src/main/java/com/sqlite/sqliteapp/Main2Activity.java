@@ -13,8 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.unboundid.ldap.sdk.BindRequest;
 import com.unboundid.ldap.sdk.BindResult;
 import com.unboundid.ldap.sdk.LDAPConnection;
@@ -29,11 +33,14 @@ import com.unboundid.util.ssl.TrustAllTrustManager;
 import javax.net.SocketFactory;
 
 import java.security.GeneralSecurityException;
+import java.util.List;
 
 
 public class Main2Activity extends AppCompatActivity {
     LDAPConnection ldapConnection = null;
-    DatabaseHelper myDB;
+ //   DatabaseHelper myDB;
+    ParseUser cuser = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +51,9 @@ public class Main2Activity extends AppCompatActivity {
         tx.setTypeface(cd);
 
 
+/*
         myDB = new DatabaseHelper(this);
+*/
 
         Button login = (Button)findViewById(R.id.login);
 
@@ -76,9 +85,37 @@ public class Main2Activity extends AppCompatActivity {
                                 BindResult bindResult = ldapConnection.bind(bindRequest);
                                if (bindResult.getResultCode() == ResultCode.SUCCESS) {
 
+                                   ParseQuery<ParseUser> query = ParseUser.getQuery();
+                                   query.whereEqualTo("username", name);
+                                   List<ParseUser> objects = query.find();
+                                   if(objects != null && objects.size() != 0)
+                                       cuser = objects.get(0);
+
+                                   if (cuser == null) {
+                                       Intent intent = new Intent(v.getContext(), MainActivity.class);
+                                       intent.putExtra("ufid", name);
+                                       startActivityForResult(intent, 0);
+
+
+                                   } else {
+                                       ParseUser.logInInBackground(name + "",
+                                               "213" + "", new LogInCallback() {
+                                                   @Override
+                                                   public void done(ParseUser user, ParseException e) {
+                                                   }
+                                               });
+                                       Intent intent = new Intent(v.getContext(), find_books.class);
+                                       startActivityForResult(intent, 0);
+                                   }
+
+
+
+
+
+/*
                                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                                     intent.putExtra("ufid", name);
-                                    startActivityForResult(intent, 0);
+                                    startActivityForResult(intent, 0);*/
                                     ldapConnection.close();
                                     // }
                                 }
@@ -89,12 +126,15 @@ public class Main2Activity extends AppCompatActivity {
                                 test.setText("Incorrect Username/Password.\nPlease try again!");
                                 test.setEnabled(false);
                                 //test.append(e.toString());
+                                if(ldapConnection != null)
                                 ldapConnection.close();
 
                             }
                             catch(GeneralSecurityException exception) {
                                 //test.setText(exception.toString());
                                 ldapConnection.close();
+                            }catch (ParseException e1) {
+                                e1.printStackTrace();
                             }
                         }
 

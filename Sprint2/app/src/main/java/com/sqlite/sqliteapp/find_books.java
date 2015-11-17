@@ -24,6 +24,7 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class find_books extends ListActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> objectid = new ArrayList<String>();
 
+    ArrayList<String> names = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +56,62 @@ public class find_books extends ListActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
-                query2.whereContains("Title", search.getQuery().toString());
+                final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
+
+                query2.whereContains("TitleToLowerCase", search.getQuery().toString().toLowerCase());
+                query3.whereContains("AuthorToLowerCase", search.getQuery().toString().toLowerCase());
 
                 query2.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
                         if (e == null) {
-                            ArrayList<String> names = new ArrayList<String>();
                             int i = 0;
+                            names.clear();
                             for (ParseObject nameObject : objects) {
-                                String name = nameObject.get("Author").toString();
+                                String name = nameObject.get("Title").toString();
+                                String author = nameObject.get("Author").toString();
+                                String disp = name + " By " + author;
                                 Log.d("Title", name);
-                                names.add(i, name);
+                                names.add(i, disp);
+                                objectid.add(nameObject.getObjectId());
+
+                                i++;
+                            }
+                            /*adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
+                            getListView().setAdapter(adapter);
+                            getListView().setOnItemClickListener(
+                                    new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent intent = new Intent(parent.getContext(), BookDetails.class);
+                                            intent.putExtra("oid", objectid.get(position));
+                                            startActivityForResult(intent, 0);
+
+                                        }
+                                    }
+                            );
+*/
+
+                        } else {
+                            Log.d("Author", "Error: " + e.getMessage());
+                        }
+
+                    }
+                });
+
+                query3.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e) {
+                        if (e == null) {
+                            // ArrayList<String> names = new ArrayList<String>();
+                            int i = 0;
+                            // names.clear();
+                            for (ParseObject nameObject : objects) {
+                                String name = nameObject.get("Title").toString();
+                                String author = nameObject.get("Author").toString();
+                                String disp = name + " By " + author;
+                                Log.d("Title", name);
+                                names.add(i, disp);
                                 objectid.add(nameObject.getObjectId());
 
                                 i++;
@@ -90,6 +136,8 @@ public class find_books extends ListActivity {
                         }
                     }
                 });
+
+                names.clear();
                 return false;
             }
 
@@ -115,6 +163,14 @@ public class find_books extends ListActivity {
         if(button_text.equals("Add Book")){
             Intent intent = new Intent(this, book_upload.class);
             startActivity(intent);
+        }
+    }
+    public void logOut(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Logout")){
+            ParseUser.logOut();
+            finish();
         }
     }
 

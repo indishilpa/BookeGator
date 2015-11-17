@@ -148,7 +148,7 @@ public class book_upload extends AppCompatActivity {
                         boolean invalid = false;
                         String author = editAuthor.getText().toString();
                         String title = editTitle.getText().toString();
-                        String isbn  = editIsbn.getText().toString();
+                        String isbn = editIsbn.getText().toString();
                         String edition = editEdition.getText().toString();
                         String related_course = editRelated_course.getText().toString();
                         String yearOfPublication = editYearOfPublication.getText().toString();
@@ -168,15 +168,17 @@ public class book_upload extends AppCompatActivity {
                         if (!invalid) {
                             final ParseObject uploadBooks = new ParseObject("UploadBooks");
                             uploadBooks.put("Title", title);
+                            uploadBooks.put("TitleToLowerCase", title.toLowerCase());
                             uploadBooks.put("Author", author);
+                            uploadBooks.put("AuthorToLowerCase", author.toLowerCase());
                             uploadBooks.put("ISBN", isbn);
-                            uploadBooks.put("Edition",edition);
+                            uploadBooks.put("Edition", edition);
                             uploadBooks.put("Year_Of_Publication", yearOfPublication);
                             uploadBooks.put("Related_Course", related_course);
                             uploadBooks.put("Deposit_Amount", depositAmount);
-                            ParseUser user= ParseUser.getCurrentUser();
-                            uploadBooks.put("Owner1",user);
-                           //****** uploadBooks.put("UserID", user.getObjectId());
+                            ParseUser user = ParseUser.getCurrentUser();
+                            uploadBooks.put("Owner1", user);
+                            //****** uploadBooks.put("UserID", user.getObjectId());
                             uploadBooks.saveInBackground();
 
                             if (parseFile != null) {
@@ -219,6 +221,17 @@ public class book_upload extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void logOut(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Logout")){
+            ParseUser.logOut();
+            finish();
+        }
+    }
+
+
 
 
     @Override

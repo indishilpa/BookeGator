@@ -16,12 +16,14 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
 import java.util.List;
 
 public class BookDetails extends AppCompatActivity {
     MenuFly root;
+    public final static String EXTRA_MESSAGE = "com.sqlite.sqliteapp.MESSAGE";
     TextView textTitle, textAuthor, textEdition, textYear, textDeposit, textISBN;
     Button contactOwner, issueRequest;
 
@@ -43,6 +45,14 @@ public class BookDetails extends AppCompatActivity {
         viewAll(oid);
     }
 
+    public void findUserName(View view) {
+        String user2 = "shilpa92";
+
+        Intent intent = new Intent(this, ViewActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, user2);
+        startActivity(intent);
+    }
+
     public void viewAll(final String oid) {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
@@ -55,16 +65,16 @@ public class BookDetails extends AppCompatActivity {
                     //textTitle.setEnabled(false);
                     textAuthor.setText("by " + object.getString("Author"));
                     // textAuthor.setEnabled(false);
-                    if(object.getString("Edition") != null) {
-                        textEdition.setText( "Edition - " + object.getString("Edition"));
+                    if (object.getString("Edition") != null) {
+                        textEdition.setText("Edition - " + object.getString("Edition"));
                     }
-                    if(object.getString("Year_Of_Publication") != null) {
+                    if (object.getString("Year_Of_Publication") != null) {
                         textYear.setText("Year of Publication - " + object.getString("Year_Of_Publication"));
                     }
-                    if(object.getString("ISBN") != null) {
+                    if (object.getString("ISBN") != null) {
                         textISBN.setText("ISBN - " + object.getString("ISBN"));
                     }
-                    if(object.getString("Deposit_Amount") != null) {
+                    if (object.getString("Deposit_Amount") != null) {
                         textDeposit.setText("Deposit Amount - " + object.getString("Deposit_Amount"));
                     }
 
@@ -95,6 +105,14 @@ public class BookDetails extends AppCompatActivity {
         if(button_text.equals("Search Books")){
             Intent intent = new Intent(this, find_books.class);
             startActivity(intent);
+        }
+    }
+    public void logOut(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Logout")){
+            ParseUser.logOut();
+            finish();
         }
     }
 
