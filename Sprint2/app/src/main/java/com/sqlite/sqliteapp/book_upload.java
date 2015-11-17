@@ -1,13 +1,7 @@
 package com.sqlite.sqliteapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,9 +17,12 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.sqlite.sqliteapp.Views.MenuFly;
+
+import java.util.List;
 
 import java.io.ByteArrayOutputStream;
 
@@ -176,6 +173,13 @@ public class book_upload extends AppCompatActivity {
                             uploadBooks.put("Year_Of_Publication", yearOfPublication);
                             uploadBooks.put("Related_Course", related_course);
                             uploadBooks.put("Deposit_Amount", depositAmount);
+                            ParseUser user = ParseUser.getCurrentUser();
+                            uploadBooks.put("Owner1", user);
+
+                            int x = user.getInt("BooksNum");
+
+                            user.put("BooksNum", x + 1);
+                            //****** uploadBooks.put("UserID", user.getObjectId());
                             ParseUser user = ParseUser.getCurrentUser();
                             uploadBooks.put("Owner1", user);
                             //****** uploadBooks.put("UserID", user.getObjectId());
