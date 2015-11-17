@@ -111,8 +111,6 @@ public class BookDetails extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     public void viewAll(final String oid) {
