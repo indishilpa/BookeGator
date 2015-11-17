@@ -56,6 +56,14 @@
             android:height="60sp"
             android:textSize="18sp" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logOut"
+            android:text="Logout"
+            android:height="60sp"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -136,14 +144,14 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="true">
+                android:focusable="true"
+                android:background="#e5e5ff">
 
                 <SearchView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchView"
-                    android:layout_alignParentTop="true"
-                    android:queryHint="Search.."/>
+                    android:layout_alignParentTop="true" />
 
             </LinearLayout>
 

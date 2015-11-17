@@ -1,6 +1,7 @@
 package com.sqlite.sqliteapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +40,9 @@ public class BookDetails extends AppCompatActivity {
         textDeposit = (TextView)findViewById(R.id.deposit);
         issueRequestButton = (Button)findViewById(R.id.issuerequest);
         final String objectId = getIntent().getExtras().getString("oid");
-
+        TextView tx = (TextView) findViewById(R.id.Title);
+        Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+        tx.setTypeface(cd);
         viewAll(objectId);
 
         issueRequestButton.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +133,15 @@ public class BookDetails extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Search Books")){
             Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+    public void logOut(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Logout")){
+            ParseUser.logOut();
+            Intent intent = new Intent(this, Main2Activity.class);
             startActivity(intent);
         }
     }

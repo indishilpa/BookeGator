@@ -22,7 +22,7 @@ public class MenuFly extends LinearLayout {
     private View content;
 
     // Constants
-    protected static final int menuMargin = 500;
+    protected static final int menuMargin = 400;
 
     public enum MenuState {
         CLOSED, OPEN, CLOSING, OPENING

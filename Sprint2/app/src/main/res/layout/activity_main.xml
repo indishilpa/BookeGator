@@ -48,6 +48,21 @@
             android:height="60sp"
             android:textSize="18sp" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="myBooks"
+            android:text="My Books"
+            android:height="60sp"
+            android:textSize="18sp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logOut"
+            android:text="Logout"
+            android:height="60sp"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -133,15 +148,20 @@
                 <RelativeLayout android:layout_weight="1.5" android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:gravity="center" >
+<!--
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"-->
                     <ImageView
                         android:id="@+id/iv"
+                        android:layout_width="290sp"
+                        android:layout_height="210sp"
+                        android:layout_alignParentTop="true"
                         android:scaleType="fitCenter"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"  android:paddingLeft="10dp"
+                        android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/myimage"
+                        android:src="@drawable/myimage"  android:clickable="true"
                         android:layout_marginTop="72dp" />
 
                     <ImageButton
@@ -149,13 +169,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"
-                        android:padding="4dp"
-                        android:layout_margin="8dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/edit_states"
                         android:src="@drawable/ic_action_edit"
-                        android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@+id/iv"
+                        android:layout_alignEnd="@+id/iv" />
 
                 </RelativeLayout>
 
