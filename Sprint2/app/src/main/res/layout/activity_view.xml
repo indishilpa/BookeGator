@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Book Details"
+                android:text="Account Details"
                 android:id="@+id/book"
                 android:padding="5dp"
                 android:textSize="22sp"
@@ -153,23 +153,26 @@
                 android:id="@+id/bottomsection"
                 android:background="#ffffe6">
 
-                <com.parse.ParseImageView
-                    android:id="@+id/icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:padding="15dp"  />
+                <RelativeLayout android:layout_weight="1.5" android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center" >
+                    <com.parse.ParseImageView
+                        android:id="@+id/icon"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"  android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        />
+                </RelativeLayout>
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
+                    android:orientation="vertical"
                     android:touchscreenBlocksFocus="true"
                     android:transitionGroup="false"
                     android:nestedScrollingEnabled="false"
@@ -178,40 +181,77 @@
                     >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/nameV" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="10sp"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true">
+                        android:text="Full Name"
+                        android:textColor="#372c24"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="16dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/nameV"    android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="#372c24"
+                        tools:ignore="HardcodedText" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/emailV" />
 
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile number"
+                        android:textColor="#372c24"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/phoneV" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp">
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"  android:layout_gravity="center_vertical"
+                            android:stepSize="0.5"
+                            android:rating="0.0"
+                            style="?android:attr/ratingBarStyleSmall" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dip"
+                        android:text="Edit Details"
+                        tools:ignore="HardcodedText" />
+
                 </LinearLayout>
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:stepSize="0.5"
-                    android:rating="0.0" />
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

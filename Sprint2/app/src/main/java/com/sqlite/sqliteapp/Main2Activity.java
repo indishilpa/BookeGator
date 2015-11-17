@@ -84,6 +84,9 @@ public class Main2Activity extends AppCompatActivity {
 
                                 BindResult bindResult = ldapConnection.bind(bindRequest);
                                if (bindResult.getResultCode() == ResultCode.SUCCESS) {
+                                   ParseUser p = ParseUser.getCurrentUser();
+                                   if ( p!=null)
+                                   p.logOut();
 
                                    ParseQuery<ParseUser> query = ParseUser.getQuery();
                                    query.whereEqualTo("username", name);

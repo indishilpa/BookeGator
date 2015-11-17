@@ -13,22 +13,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class find_books extends ListActivity {
     MenuFly root;
@@ -83,8 +77,6 @@ public class find_books extends ListActivity {
                                         }
                                     }
                             );
-
-
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
                         }
@@ -114,6 +106,16 @@ public class find_books extends ListActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Add Book")){
             Intent intent = new Intent(this, book_upload.class);
+            startActivity(intent);
+        }
+    }
+
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
             startActivity(intent);
         }
     }

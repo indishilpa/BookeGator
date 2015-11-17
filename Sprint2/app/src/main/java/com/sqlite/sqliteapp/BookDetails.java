@@ -19,7 +19,7 @@ import com.sqlite.sqliteapp.Views.MenuFly;
 
 public class BookDetails extends AppCompatActivity {
     MenuFly root;
-    public final static String EXTRA_MESSAGE = "com.sqlite.sqliteapp.MESSAGE";
+
     TextView textTitle, textAuthor, textEdition, textYear, textDeposit, textISBN;
     Button contactOwner, issueRequestButton;
 
@@ -51,13 +51,13 @@ public class BookDetails extends AppCompatActivity {
 
     }
 
-    public void findUserName(View view) {
+   /* public void findUserName(View view) {
         String user2 = "shilpa92";
 
         Intent intent = new Intent(this, ViewActivity.class);
         intent.putExtra(EXTRA_MESSAGE, user2);
         startActivity(intent);
-    }
+    }*/
 
     public void viewAll(final String oid) {
 

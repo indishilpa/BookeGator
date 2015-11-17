@@ -135,9 +135,11 @@
                     android:gravity="center" >
                     <ImageView
                         android:id="@+id/iv"
+                        android:scaleType="fitCenter"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
+                        android:layout_alignParentTop="true"  android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/myimage"
                         android:layout_marginTop="72dp" />
