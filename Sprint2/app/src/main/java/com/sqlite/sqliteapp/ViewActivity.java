@@ -117,11 +117,22 @@ public class ViewActivity extends Activity{
             startActivity(intent);
         }
     }
+
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Search Books")){
             Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+
+    public void logOut(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Logout")){
+            ParseUser.logOut();
+            Intent intent = new Intent(this, Main2Activity.class);
             startActivity(intent);
         }
     }
@@ -133,39 +144,6 @@ public class ViewActivity extends Activity{
             Intent intent = new Intent(this, my_book.class);
             startActivity(intent);
         }
-    }
-
-    public void addListenerOnRatingBar() {
-
-        //   ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        //   ratingValue = (TextView) findViewById(R.id.txtRatingValue);
-
-    /*    ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
-           //     ratingValue.setText(String.valueOf(rating));
-                rateThisUser.put("Rating", String.valueOf(rating));
-                rateThisUser.saveEventually();
-
-            }
-        });*/
-    }
-
-    public void addListenerOnButton() {
-
-        //   ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        //  button = (Button) findViewById(R.id.button);
-
-     /*   button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ViewActivity.this, String.valueOf(ratingBar.getRating()), Toast.LENGTH_LONG).show();
-            }
-
-        });*/
-
     }
 
     @Override

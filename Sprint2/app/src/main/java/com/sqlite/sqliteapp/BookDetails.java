@@ -54,14 +54,6 @@ public class BookDetails extends AppCompatActivity {
 
     }
 
-   /* public void findUserName(View view) {
-        String user2 = "shilpa92";
-
-        Intent intent = new Intent(this, ViewActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, user2);
-        startActivity(intent);
-    }*/
-
     public void viewAll(final String oid) {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
@@ -96,6 +88,16 @@ public class BookDetails extends AppCompatActivity {
 
     }
 
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
+
     public void issueRequest(final String oid){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
         Log.d("tag", "inside");
@@ -128,6 +130,16 @@ public class BookDetails extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void myBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Books")){
+            Intent intent = new Intent(this, my_book.class);
+            startActivity(intent);
+        }
+    }
+
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -136,6 +148,7 @@ public class BookDetails extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     public void logOut(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();

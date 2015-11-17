@@ -95,6 +95,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
+
     public Bitmap decodeFile(String path) {
         try {
             BitmapFactory.Options o = new BitmapFactory.Options();
@@ -150,13 +160,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*  public Uri setImageUri() {
-          File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) , "image" + new Date().getTime() + ".png");
-          Uri imgUri = Uri.fromFile(file);
-          this.imgPath = file.getAbsolutePath();
-          return imgUri;
-      }
-  */
     public String getAbsolutePath(Uri uri) {
         String[] projection = { MediaStore.MediaColumns.DATA };
         @SuppressWarnings("deprecation")
@@ -200,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -217,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     public void logOut(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -225,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     }
+
     public Boolean validate_data(String name, String phone_no, String email){
         Boolean invalid = false;
         Pattern pattern = Patterns.EMAIL_ADDRESS;

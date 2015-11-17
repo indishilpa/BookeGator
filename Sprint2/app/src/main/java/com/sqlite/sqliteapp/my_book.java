@@ -82,6 +82,16 @@ public class my_book extends ListActivity {
         this.root.toggleMenu();
     }
 
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
+
     public void openBook(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -90,6 +100,7 @@ public class my_book extends ListActivity {
             startActivity(intent);
         }
     }
+
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -108,6 +119,7 @@ public class my_book extends ListActivity {
             startActivity(intent);
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
