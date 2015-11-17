@@ -10,12 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
+
+import java.util.List;
 
 public class BookDetails extends AppCompatActivity {
     MenuFly root;
@@ -96,15 +100,21 @@ public class BookDetails extends AppCompatActivity {
     public void issueRequest(final String oid){
         issueRequestButton.setOnClickListener(
                 new View.OnClickListener() {
-                    public void onClick(View v2) {
+                    public void onClick(View v) {
 
                         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
-                        query.getInBackground(oid, new GetCallback<ParseObject>() {
+                        query.whereEqualTo("objectId", oid);
+                        query.findInBackground(new FindCallback<ParseObject>() {
                             @Override
-                            public void done(ParseObject object, ParseException e) {
+                            public void done(List<ParseObject> objects, ParseException e) {
                                 if (e == null) {
-                                    Log.d("tag", "current id : " + object.getString("objectId"));
-                                    object.put("Issued_By", ParseUser.getCurrentUser());
+                                    for (ParseObject object : objects) {
+                                        Log.d("tag", "current id : " + object.getObjectId() + " " + ParseUser.getCurrentUser().getObjectId());
+                                        // String val = ParseUser.getCurrentUser().getObjectId();
+                                        ParseObject po = object;
+                                        po.put("Issued_To", "hello");
+                                        po.saveInBackground();
+                                    }
                                 }
                             }
                         });
