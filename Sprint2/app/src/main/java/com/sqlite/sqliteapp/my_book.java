@@ -2,6 +2,7 @@ package com.sqlite.sqliteapp;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -31,12 +34,14 @@ public class my_book extends ListActivity {
 
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_my_book, null);
         setContentView(root);
+
+        TextView tx = (TextView) findViewById(R.id.Title);
+        Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+        tx.setTypeface(cd);
+
         final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
         ParseUser u = ParseUser.getCurrentUser();
-
-
         query2.whereEqualTo("Owner1", u );
-
         query2.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -71,6 +76,37 @@ public class my_book extends ListActivity {
                 }
             }
         });
+    }
+
+    public void toggleMenu(View v){
+        this.root.toggleMenu();
+    }
+
+    public void openBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Add Book")){
+            Intent intent = new Intent(this, book_upload.class);
+            startActivity(intent);
+        }
+    }
+    public void searchBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Search Books")){
+            Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+
+    public void logOut(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Logout")){
+            ParseUser.logOut();
+            Intent intent = new Intent(this, Main2Activity.class);
+            startActivity(intent);
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

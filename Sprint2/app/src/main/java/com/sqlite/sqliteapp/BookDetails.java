@@ -1,6 +1,7 @@
 package com.sqlite.sqliteapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,16 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
-
-import java.util.List;
 
 public class BookDetails extends AppCompatActivity {
     MenuFly root;
@@ -43,7 +40,9 @@ public class BookDetails extends AppCompatActivity {
         textDeposit = (TextView)findViewById(R.id.deposit);
         issueRequestButton = (Button)findViewById(R.id.issuerequest);
         final String objectId = getIntent().getExtras().getString("oid");
-
+        TextView tx = (TextView) findViewById(R.id.Title);
+        Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+        tx.setTypeface(cd);
         viewAll(objectId);
 
         issueRequestButton.setOnClickListener(new View.OnClickListener() {
@@ -98,29 +97,23 @@ public class BookDetails extends AppCompatActivity {
     }
 
     public void issueRequest(final String oid){
-        issueRequestButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
-                        query.whereEqualTo("objectId", oid);
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> objects, ParseException e) {
-                                if (e == null) {
-                                    for (ParseObject object : objects) {
-                                        Log.d("tag", "current id : " + object.getObjectId() + " " + ParseUser.getCurrentUser().getObjectId());
-                                        // String val = ParseUser.getCurrentUser().getObjectId();
-                                        ParseObject po = object;
-                                        po.put("Issued_To", "hello");
-                                        po.saveInBackground();
-                                    }
-                                }
-                            }
-                        });
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
+        Log.d("tag", "inside");
+        query.getInBackground(oid, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    ParseObject issuedBooks = new ParseObject("IssuedBooks");
+                    issuedBooks.put("UserObject", ParseUser.getCurrentUser());
+                    issuedBooks.put("BookObject", object);
+                    try {
+                        issuedBooks.save();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
                     }
                 }
-        );
+            }
+        });
     }
 
     public void toggleMenu(View v){
@@ -148,7 +141,8 @@ public class BookDetails extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
-            finish();
+            Intent intent = new Intent(this, Main2Activity.class);
+            startActivity(intent);
         }
     }
 

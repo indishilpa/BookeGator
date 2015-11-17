@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.Parse;
@@ -58,8 +60,9 @@ public class book_upload extends AppCompatActivity {
         editDepositAmount = (EditText)findViewById(R.id.depositAmount);
         addBooks = (Button)findViewById(R.id.addBook);
 
-       // Parse.enableLocalDatastore(this);
-       // Parse.initialize(this, "cSMb5B1Yob7iSIyMv8KaFn3odTgAQdBwWx9mNcWD", "0dWn9WVTrFj5laRyvxboYSftoCByWnWw22QLaq06");
+        TextView tx = (TextView) findViewById(R.id.Title);
+        Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+        tx.setTypeface(cd);
 
         imageButton = (Button)findViewById(R.id.imageButton1);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -237,7 +240,8 @@ public class book_upload extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
-            finish();
+            Intent intent = new Intent(this, Main2Activity.class);
+            startActivity(intent);
         }
     }
 

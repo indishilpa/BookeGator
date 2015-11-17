@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,10 +47,14 @@ public class find_books extends ListActivity {
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_find_books, null);
         setContentView(root);
 
+        TextView tx = (TextView) findViewById(R.id.Title);
+        Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+        tx.setTypeface(cd);
 
         search = (SearchView)findViewById(R.id.searchView);
-        //textView3 = (TextView)findViewById(R.id.textView3);
-        search.setQueryHint("SearchView");
+        search.setIconifiedByDefault(false);
+        search.setQueryHint("Enter Book Title or Author");
+
 
         //*** setOnQueryTextListener ***
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -170,7 +175,8 @@ public class find_books extends ListActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
-            finish();
+            Intent intent = new Intent(this, Main2Activity.class);
+            startActivity(intent);
         }
     }
 

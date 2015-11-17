@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 selectImage();
             }
         });
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
         ufid = getIntent().getExtras().getString("ufid");
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.myimage);
@@ -79,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
         tx.setTypeface(cd);
 
-        editUfid = (EditText) findViewById((R.id.ufid));
-        editUfid.setText("UFID - " + ufid);
-        editUfid.setEnabled(false);
         editName = (EditText) findViewById(R.id.name);
         editPhone = (EditText) findViewById(R.id.phone);
         editEmail = (EditText) findViewById(R.id.email);

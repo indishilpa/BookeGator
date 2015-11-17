@@ -150,25 +150,24 @@
                     android:gravity="center" >
                     <ImageView
                         android:id="@+id/iv"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="290sp"
+                        android:layout_height="210sp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/myimage"
-                        android:layout_marginTop="72dp" />
+                        android:clickable="true" />
 
                     <ImageButton
                         android:id="@+id/imageButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"
-                        android:padding="4dp"
-                        android:layout_margin="8dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/edit_states"
                         android:src="@drawable/ic_action_edit"
-                        android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@+id/iv"
+                        android:layout_alignEnd="@+id/iv" />
 
                 </RelativeLayout>
 
