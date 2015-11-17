@@ -94,23 +94,23 @@ public class BookDetails extends AppCompatActivity {
     }
 
     public void issueRequest(final String oid){
-        issueRequestButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v2) {
-
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
-                        query.getInBackground(oid, new GetCallback<ParseObject>() {
-                            @Override
-                            public void done(ParseObject object, ParseException e) {
-                                if (e == null) {
-                                    Log.d("tag", "current id : " + object.getString("objectId"));
-                                    object.put("Issued_By", ParseUser.getCurrentUser());
-                                }
-                            }
-                        });
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
+        Log.d("tag", "inside");
+        query.getInBackground(oid, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    ParseObject issuedBooks = new ParseObject("IssuedBooks");
+                    issuedBooks.put("UserObject", ParseUser.getCurrentUser());
+                    issuedBooks.put("BookObject", object);
+                    try {
+                        issuedBooks.save();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
                     }
                 }
-        );
+            }
+        });
     }
 
     public void toggleMenu(View v){
