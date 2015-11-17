@@ -27,7 +27,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="openBook"
             android:text="Add Book"
             android:height="60sp"
             android:textSize="18sp" />
@@ -35,7 +35,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="searchBooks"
             android:text="Search Books"
             android:height="60sp"
             android:textSize="18sp" />
@@ -48,13 +48,20 @@
             android:height="60sp"
             android:textSize="18sp" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="myBooks"
+            android:text="My Books"
+            android:height="60sp"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -109,103 +116,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Book Details"
-                android:id="@+id/book"
+                android:text="My Books"
+                android:id="@+id/textView2"
                 android:padding="5dp"
                 android:textSize="22sp"
                 android:textColor="#1a1a1a" />
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/scrollView"
-            android:fillViewport="true">
 
-            <!-- <RatingBar
-                   android:id="@+id/ratingBar"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:numStars="5"
-                   android:stepSize="0.5"
-                   android:rating="0.0" />
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bottomsection"
+            android:background="#ffffe6">
 
-               <TextView
-                   android:id="@+id/lblResult"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Result:"
-                   android:textAppearance="?android:attr/textAppearanceLarge" />
-
-               <TextView
-                   android:id="@+id/txtRatingValue"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text=""
-                   android:textAppearance="?android:attr/textAppearanceSmall" />
-           -->
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
+            <ListView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/bottomsection"
-                android:background="#ffffe6">
+                android:id="@android:id/list" />
+        </LinearLayout>
 
-                <com.parse.ParseImageView
-                    android:id="@+id/icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:padding="15dp"  />
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
-                    android:touchscreenBlocksFocus="true"
-                    android:transitionGroup="false"
-                    android:nestedScrollingEnabled="false"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/nameV" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="10sp"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/emailV" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 </com.sqlite.sqliteapp.Views.MenuFly>

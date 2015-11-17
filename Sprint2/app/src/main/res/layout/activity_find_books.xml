@@ -1,4 +1,3 @@
-<!--
 <?xml version="1.0" encoding="utf-8"?>
 <com.sqlite.sqliteapp.Views.MenuFly
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -50,38 +49,113 @@
             android:textSize="18sp" />
 
     </LinearLayout>
--->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.sqlite.sqliteapp.find_books">
 
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchView"
-        android:layout_alignParentTop="true"
-        android:queryHint="Search.."/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@android:id/list"
-        android:layout_below="@+id/searchView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="100dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/searchView"
-        android:layout_centerHorizontal="true" />
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:gravity="center|left"
+            android:background="#256eb8"
+            android:padding="5dp"
+            android:id="@+id/topsection">
 
-</LinearLayout>
+            <ImageButton
+                android:layout_width="23dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton"
+                android:src="@android:drawable/arrow_down_float"
+                android:layout_weight="0"
+                android:background="#256eb8"
+                android:onClick="toggleMenu"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_weight="0.2"
+                android:layout_marginLeft="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="BOOKeGATOR"
+                android:id="@+id/Title"
+                android:layout_weight="0.06"
+                android:textColor="#ffffff"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                android:typeface="serif" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/middlesection"
+            android:background="#DDDDDDDD">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Search Books"
+                android:id="@+id/textView2"
+                android:padding="5dp"
+                android:textSize="22sp"
+                android:textColor="#1a1a1a" />
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bottomsection"
+            android:background="#ffffe6">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <SearchView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchView"
+                    android:layout_alignParentTop="true"
+                    android:queryHint="Search.."/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:listSelector="@drawable/list_selector"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@android:id/list"
+                    android:layout_below="@+id/searchView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:cacheColorHint="#00000000"
+                    android:dividerHeight="3dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</com.sqlite.sqliteapp.Views.MenuFly>
