@@ -17,7 +17,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="viewAccount"
             android:text="My Account"
             android:height="60sp"
             android:paddingTop="10sp"
@@ -148,14 +148,20 @@
                 <RelativeLayout android:layout_weight="1.5" android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:gravity="center" >
+<!--
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"-->
                     <ImageView
                         android:id="@+id/iv"
                         android:layout_width="290sp"
                         android:layout_height="210sp"
                         android:layout_alignParentTop="true"
+                        android:scaleType="fitCenter"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/myimage"
-                        android:clickable="true" />
+                        android:src="@drawable/myimage"  android:clickable="true" />
 
                     <ImageButton
                         android:id="@+id/imageButton1"

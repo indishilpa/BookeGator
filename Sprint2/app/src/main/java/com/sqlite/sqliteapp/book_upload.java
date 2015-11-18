@@ -161,6 +161,24 @@ public class book_upload extends AppCompatActivity {
         builder.show();
     }
 
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
+
+    public void myBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Books")){
+            Intent intent = new Intent(this, my_book.class);
+            startActivity(intent);
+        }
+    }
 
     public void addBookData(){
         addBooks.setOnClickListener(
@@ -240,7 +258,6 @@ public class book_upload extends AppCompatActivity {
 
         this.root.toggleMenu();
     }
-
 
     public void searchBooks(View view){
         String button_text;

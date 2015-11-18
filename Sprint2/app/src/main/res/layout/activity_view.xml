@@ -27,7 +27,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="openBook"
             android:text="Add Book"
             android:height="60sp"
             android:textSize="18sp" />
@@ -35,7 +35,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="searchBooks"
             android:text="Search Books"
             android:height="60sp"
             android:textSize="18sp" />
@@ -47,6 +47,15 @@
             android:text="Wish list"
             android:height="60sp"
             android:textSize="18sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="toggleMenu"
+            android:text="My Books"
+            android:height="60sp"
+            android:textSize="18sp" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Book Details"
+                android:text="Account Details"
                 android:id="@+id/book"
                 android:padding="5dp"
                 android:textSize="22sp"
@@ -160,23 +169,26 @@
                 android:id="@+id/bottomsection"
                 android:background="#ffffe6">
 
-                <com.parse.ParseImageView
-                    android:id="@+id/icon"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:padding="15dp"  />
+                    android:gravity="center" >
+                    <com.parse.ParseImageView
+                        android:id="@+id/icon"
+                        android:layout_width="290sp"
+                        android:layout_height="210sp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"  android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
+                    android:orientation="vertical"
                     android:touchscreenBlocksFocus="true"
                     android:transitionGroup="false"
                     android:nestedScrollingEnabled="false"
@@ -184,41 +196,100 @@
                     android:focusable="true"
                     >
 
-                    <TextView
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Name -"
+                            android:textColor="#372c24"
+                            tools:ignore="HardcodedText"
+                            android:id="@+id/name" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/nameV"    android:singleLine="true"
+                            android:layout_marginLeft="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email -"
+                            android:textColor="#372c24"
+                            tools:ignore="HardcodedText"
+                            android:id="@+id/email" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/emailV"
+                            android:layout_marginLeft="10dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mobile number"
+                            android:textColor="#372c24"
+                            tools:ignore="HardcodedText"
+                            android:id="@+id/m_number" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/phoneV" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/nameV" />
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp">
 
-                </LinearLayout>
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"  android:layout_gravity="center_horizontal"
+                            android:stepSize="0.5"
+                            android:rating="0.0" />
 
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="10sp"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true">
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                   <!-- <Button
+                        android:id="@+id/btnSave"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/emailV" />
+                        android:layout_marginTop="30dip"
+                        android:text="Edit Details"
+                        tools:ignore="HardcodedText" />-->
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></LinearLayout>
 
                 </LinearLayout>
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:stepSize="0.5"
-                    android:rating="0.0" />
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

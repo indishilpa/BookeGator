@@ -17,7 +17,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="viewAccount"
             android:text="My Account"
             android:height="60sp"
             android:paddingTop="10sp"

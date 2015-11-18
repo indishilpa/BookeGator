@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,14 +15,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -32,7 +27,6 @@ import com.sqlite.sqliteapp.Views.MenuFly;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class find_books extends ListActivity {
     MenuFly root;
@@ -197,7 +191,15 @@ public class find_books extends ListActivity {
             finish();*/
         }
     }
-
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();

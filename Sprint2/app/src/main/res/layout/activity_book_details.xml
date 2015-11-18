@@ -17,7 +17,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="viewAccount"
             android:text="My Account"
             android:height="60sp"
             android:paddingTop="10sp"
@@ -278,7 +278,7 @@
                     android:text="Contact Owner"
                     android:id="@+id/contactOwner"
                     android:layout_gravity="center"
-                    android:alpha="0.7"  android:onClick="findUserName"/>
+                    android:alpha="0.7"  android:onClick="contactOwner"/>
 
                 <Button
                     android:layout_width="wrap_content"
