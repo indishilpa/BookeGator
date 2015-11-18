@@ -14,9 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.unboundid.ldap.sdk.BindRequest;
@@ -25,8 +23,6 @@ import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
 import com.unboundid.ldap.sdk.ResultCode;
 import com.unboundid.ldap.sdk.SimpleBindRequest;
-import com.unboundid.ldap.sdk.controls.PasswordExpiredControl;
-import com.unboundid.ldap.sdk.controls.PasswordExpiringControl;
 import com.unboundid.util.ssl.SSLUtil;
 import com.unboundid.util.ssl.TrustAllTrustManager;
 
@@ -38,7 +34,6 @@ import java.util.List;
 
 public class Main2Activity extends AppCompatActivity {
     LDAPConnection ldapConnection = null;
- //   DatabaseHelper myDB;
     ParseUser cuser = null;
 
     @Override
