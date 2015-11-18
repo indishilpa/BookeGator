@@ -2,8 +2,10 @@ package com.sqlite.sqliteapp;
 
 import android.app.ListActivity;
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +48,18 @@ public class find_books extends ListActivity {
         //setContentView(root);
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_find_books, null);
         setContentView(root);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                //At this point you should start the login activity and finish this one
+                finish();
+            }
+        }, intentFilter);
+
 
         TextView tx = (TextView) findViewById(R.id.Title);
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
@@ -175,8 +189,12 @@ public class find_books extends ListActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
-            Intent intent = new Intent(this, Main2Activity.class);
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+            sendBroadcast(broadcastIntent);
+            /*Intent intent = new Intent(this, Main2Activity.class);
             startActivity(intent);
+            finish();*/
         }
     }
 
@@ -195,6 +213,7 @@ public class find_books extends ListActivity {
         if(button_text.equals("My Books")){
             Intent intent = new Intent(this, my_book.class);
             startActivity(intent);
+
         }
     }
 

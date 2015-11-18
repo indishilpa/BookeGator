@@ -47,6 +47,15 @@
             android:text="Wish list"
             android:height="60sp"
             android:textSize="18sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="myBooks"
+            android:text="My Books"
+            android:height="60sp"
+            android:textSize="18sp" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

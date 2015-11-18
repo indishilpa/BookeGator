@@ -1,7 +1,10 @@
 package com.sqlite.sqliteapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,10 +50,22 @@ public class book_upload extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.book_upload, null);
         setContentView(root);
 
         //setContentView(R.layout.book_upload);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                //At this point you should start the login activity and finish this one
+                finish();
+            }
+        }, intentFilter);
 
         editAuthor = (EditText)findViewById(R.id.author);
         editTitle = (EditText)findViewById(R.id.title);
@@ -232,6 +248,7 @@ public class book_upload extends AppCompatActivity {
         if(button_text.equals("Search Books")){
             Intent intent = new Intent(this, find_books.class);
             startActivity(intent);
+
         }
     }
 
@@ -240,8 +257,11 @@ public class book_upload extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
-            Intent intent = new Intent(this, Main2Activity.class);
-            startActivity(intent);
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+            sendBroadcast(broadcastIntent);
+            /*Intent intent = new Intent(this, Main2Activity.class);
+            startActivity(intent);*/
         }
     }
 

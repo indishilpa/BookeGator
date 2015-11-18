@@ -1,11 +1,14 @@
 package com.sqlite.sqliteapp;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,22 +49,26 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
         TextView tx = (TextView)findViewById(R.id.Title);
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
         tx.setTypeface(cd);
-
-
-/*
-        myDB = new DatabaseHelper(this);
-*/
-
         Button login = (Button)findViewById(R.id.login);
-
         final EditText username = (EditText) findViewById(R.id.username);
-
         final EditText password = (EditText) findViewById(R.id.password);
-
         final EditText test = (EditText)findViewById(R.id.test);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                //At this point you should start the login activity and finish this one
+                username.setText("");
+                password.setText("");
+            }
+        }, intentFilter);
 
          login.setOnClickListener(
                 new View.OnClickListener() {

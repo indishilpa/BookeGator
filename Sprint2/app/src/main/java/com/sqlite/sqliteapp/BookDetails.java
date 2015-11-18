@@ -1,6 +1,9 @@
 package com.sqlite.sqliteapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +33,18 @@ public class BookDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_book_details, null);
         setContentView(root);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                //At this point you should start the login activity and finish this one
+                finish();
+            }
+        }, intentFilter);
+
 
         textTitle = (TextView)findViewById(R.id.title);
         textAuthor = (TextView)findViewById(R.id.author);
@@ -141,8 +156,12 @@ public class BookDetails extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+            sendBroadcast(broadcastIntent);
+            /*ParseUser.logOut();
             Intent intent = new Intent(this, Main2Activity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 
