@@ -20,6 +20,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
+import com.sqlite.sqliteapp.Views.wish;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -176,6 +177,15 @@ public class find_books extends ListActivity {
         if(button_text.equals("My Account")){
             Intent intent = new Intent(this, ViewActivity.class);
             intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
+
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
             startActivity(intent);
         }
     }

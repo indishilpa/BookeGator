@@ -278,8 +278,14 @@
                     android:text="Issue Request"
                     android:id="@+id/issuerequest"
                     android:layout_gravity="center"
-                    android:alpha="0.7" />
-
+                    android:alpha="0.7" android:onClick="issueRequest"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="add to wishlist"
+                    android:id="@+id/wishlist"
+                    android:layout_gravity="center"
+                    android:alpha="0.7"  android:onClick="wishlist"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

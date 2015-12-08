@@ -30,11 +30,14 @@ import java.util.regex.Pattern;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.sqlite.sqliteapp.Views.BookeUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
+import com.sqlite.sqliteapp.Views.wish;
+
 //123
 public class MainActivity extends AppCompatActivity {
     EditText editName, editPhone, editEmail, editAddress, editUfid;
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private ParseFile parseFile;
     String imgPath;
     private String selectedImagePath = "";
-    private BookeUser bookUser;
+ //   private BookeUser bookUser;
 
     String name, phone_no, email, ufid;
 
@@ -56,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
 
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_main, null);
         setContentView(root);
+
+        ufid = getIntent().getExtras().getString("ufid");
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.myimage);
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] image = stream.toByteArray();
+
+        parseFile = new ParseFile("profileImage.png", image);
 
         imageButton = (ImageButton) findViewById(R.id.imageButton1);
         im = (ImageView)findViewById(R.id.iv);
@@ -71,15 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 selectImage();
             }
         });
-        ufid = getIntent().getExtras().getString("ufid");
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.myimage);
-
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] image = stream.toByteArray();
-
-        parseFile = new ParseFile("profileImage.png", image);
 
         TextView tx = (TextView) findViewById(R.id.Title);
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
@@ -90,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         editEmail = (EditText) findViewById(R.id.email);
         editAddress = (EditText) findViewById(R.id.address);
         addDataButton = (Button) findViewById(R.id.submitbutton);
+        editUfid = (EditText) findViewById(R.id.ufid);
+        editUfid.setText(ufid);
         // viewDataButton = (Button)findViewById(R.id.viewdata);
         addData();
 
@@ -124,10 +130,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
 
-    }
-
-    public String getImagePath() {
-        return imgPath;
     }
 
     @Override
@@ -253,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
         addDataButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // Retrieve the text entered from the EditText
                         name = editName.getText().toString();
                         phone_no = editPhone.getText().toString();
                         email = editEmail.getText().toString();
@@ -275,6 +276,25 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),
                                                 "Successfully Signed up.",
                                                 Toast.LENGTH_LONG).show();
+                                        parseFile.saveInBackground(new SaveCallback() {
+                                            public void done(ParseException e) {
+                                                if (e != null) {
+                                                    Toast.makeText(getApplicationContext(), "File could not be added.", Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    ParseUser currentUser = ParseUser.getCurrentUser();
+                                                    currentUser.put("image", parseFile);
+                                                    currentUser.saveEventually();
+
+                                                    Toast.makeText(getApplicationContext(),
+                                                            "added image to database", Toast.LENGTH_LONG)
+                                                            .show();
+
+                                                    Intent intent = new Intent(getApplicationContext(), ViewActivity.class);
+                                                    intent.putExtra("MESSAGE", ufid);
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        });
                                     } else {
                                         Toast.makeText(getApplicationContext(),
                                                 "Sign up Error", Toast.LENGTH_LONG)
@@ -282,33 +302,18 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-
-                            parseFile.saveInBackground(new SaveCallback() {
-                                public void done(ParseException e) {
-                                    if (e != null) {
-
-                                        Toast.makeText(getApplicationContext(),
-                                                "File could not be added.",
-
-                                                Toast.LENGTH_LONG).show();
-                                    } else {
-
-                                        ParseUser currentUser = ParseUser.getCurrentUser();
-                                        currentUser.put("image", parseFile);
-                                        currentUser.saveEventually();
-
-                                        Toast.makeText(getApplicationContext(),
-                                                "added image to database", Toast.LENGTH_LONG)
-                                                .show();
-
-
-                                    }
-                                }
-                            });
                         }
                     }
                 }
         );
+    }
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
+            startActivity(intent);
+        }
     }
 
     @Override

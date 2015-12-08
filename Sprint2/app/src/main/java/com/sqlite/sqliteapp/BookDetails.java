@@ -19,9 +19,12 @@ import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.PushService;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class BookDetails extends AppCompatActivity {
     MenuFly root;
 
     TextView textTitle, textAuthor, textEdition, textYear, textDeposit, textISBN;
-    Button contactOwner, issueRequestButton;
+    Button contactOwner, issueRequestButton, wishlist;
 
 
     @Override
@@ -48,6 +51,7 @@ public class BookDetails extends AppCompatActivity {
         textISBN = (TextView)findViewById(R.id.isbn);
         textDeposit = (TextView)findViewById(R.id.deposit);
         issueRequestButton = (Button)findViewById(R.id.issuerequest);
+        wishlist = (Button)findViewById(R.id.wishlist);
         final String objectId = getIntent().getExtras().getString("oid");
         TextView tx = (TextView) findViewById(R.id.Title);
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
@@ -78,6 +82,13 @@ public class BookDetails extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 contactOwner(objectId);
+            }
+        });
+        final Button wishlist = (Button)findViewById(R.id.wishlist);
+        wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                wishlist(objectId);
             }
         });
 
@@ -113,6 +124,47 @@ public class BookDetails extends AppCompatActivity {
         });
     }
 
+  /*  public void issueRequest(final String oid){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
+        Log.d("tag", "inside");
+        query.getInBackground(oid, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    // ParseObject issuedBooks = new ParseObject("IssuedBooks");
+                    object.put("Issued_By", ParseUser.getCurrentUser());
+                    object.put("Issued", true);
+                    try {
+                        object.save();
+                        Toast.makeText(getApplicationContext(), "Issued",
+                                Toast.LENGTH_LONG).show();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+    }*/
+    public void wishlist(final String oid){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
+        Log.d("tag", "inside");
+        query.getInBackground(oid, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    object.put("wished_by", ParseUser.getCurrentUser());
+                    try {
+                        object.save();
+                        Toast.makeText(getApplicationContext(), "Added to wishlist!",
+                                Toast.LENGTH_LONG).show();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
     public void viewAll(final String oid) {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
@@ -141,6 +193,9 @@ public class BookDetails extends AppCompatActivity {
                 } else {
                     textTitle.setText(e.toString());
 
+                }
+                if(object.getBoolean("Issued")){
+                    issueRequestButton.setClickable(false);
                 }
             }
         });
@@ -172,6 +227,13 @@ public class BookDetails extends AppCompatActivity {
                         issuedBooks.save();
                         Toast.makeText(getApplicationContext(), "Issued.",
                                 Toast.LENGTH_LONG).show();
+
+                    /*    ParsePush parsePush = new ParsePush();
+                        ParseQuery query = new ParseQuery("User");
+                        query.whereEqualTo("username", object.getParseUser("Owner1").getUsername());
+                        pQuery.whereMatchesQuery("", query);
+                        parsePush.sendMessageInBackground("Only for special people", pQuery);*/
+
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }

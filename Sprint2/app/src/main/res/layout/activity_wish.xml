@@ -35,11 +35,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="searchBooks"
             android:text="Search Books"
             android:height="60sp"
             android:textSize="18sp" />
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,11 +58,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="myBooks"
+            android:onClick="toggleMenu"
             android:text="My Books"
             android:height="60sp"
             android:textSize="18sp" />
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +76,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -133,12 +130,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Search Books"
+                android:text="Wish Books"
                 android:id="@+id/textView2"
                 android:padding="5dp"
                 android:textSize="22sp"
                 android:textColor="#1a1a1a" />
         </LinearLayout>
+
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -148,38 +146,11 @@
             android:id="@+id/bottomsection"
             android:background="#ffffe6">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+            <ListView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:focusable="true"
-                android:background="#e5e5ff">
-
-                <SearchView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/searchView"
-                    android:layout_alignParentTop="true" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ListView
-                    android:listSelector="@drawable/list_selector"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@android:id/list"
-                    android:layout_below="@+id/searchView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:cacheColorHint="#00000000"
-                    android:dividerHeight="3dp" />
-            </LinearLayout>
-
+                android:id="@android:id/list" />
         </LinearLayout>
+
     </LinearLayout>
 </com.sqlite.sqliteapp.Views.MenuFly>
