@@ -43,10 +43,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
             android:text="Wish list"
             android:height="60sp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="wishlist"/>
 
         <Button
             android:layout_width="match_parent"
@@ -54,6 +54,15 @@
             android:onClick="myBooks"
             android:text="My Books"
             android:height="60sp"
+            android:textSize="18sp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="myIssueRequests"
+            android:text="My Issue Requests"
+            android:height="60sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
             android:textSize="18sp" />
 
         <Button
@@ -165,37 +174,51 @@
 
                     <com.parse.ParseImageView
                         android:id="@+id/icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        android:layout_height="180dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:padding="15dp"  />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/title" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
 
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="10sp"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:id="@+id/title" />
+                        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/author" />
+                        <LinearLayout
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="10sp"
+                            android:paddingTop="10sp"
+                            android:paddingBottom="10sp"
+                            android:focusableInTouchMode="true"
+                            android:focusable="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:id="@+id/author" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

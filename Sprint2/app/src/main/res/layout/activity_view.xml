@@ -17,7 +17,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="viewAccount"
             android:text="My Account"
             android:height="60sp"
             android:paddingTop="10sp"
@@ -51,7 +51,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="myBooks"
             android:text="My Books"
             android:height="60sp"
             android:textSize="18sp" />
@@ -223,7 +223,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:layout_width="fill_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Email -"
                             android:textColor="#372c24"
@@ -233,9 +233,11 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:id="@+id/emailV"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/emailV"    android:singleLine="true"
                             android:layout_marginLeft="10dp" />
+
+
                     </LinearLayout>
 
 
@@ -244,13 +246,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+
                         <TextView
-                            android:layout_width="fill_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mobile number"
+                            android:text="Phone Number -"
                             android:textColor="#372c24"
                             tools:ignore="HardcodedText"
-                            android:id="@+id/m_number" />
+                            android:id="@+id/phone" />
 
                         <TextView
                             android:layout_width="match_parent"

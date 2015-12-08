@@ -28,7 +28,9 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -218,6 +220,11 @@ public class book_upload extends AppCompatActivity {
                             uploadBooks.put("Deposit_Amount", depositAmount);
                             ParseUser user = ParseUser.getCurrentUser();
                             uploadBooks.put("Owner1", user);
+
+                            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                            installation.add("channels", user.getObjectId().toString());
+                            installation.saveInBackground();
+
 
                             int x = user.getInt("BooksNum");
 

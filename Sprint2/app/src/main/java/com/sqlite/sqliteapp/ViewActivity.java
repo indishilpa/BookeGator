@@ -1,7 +1,10 @@
 package com.sqlite.sqliteapp;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -34,15 +37,26 @@ public class ViewActivity extends Activity{
         super.onCreate(savedInstanceState);
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_view, null);
         setContentView(root);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.package.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("onReceive", "Logout in progress");
+                //At this point you should start the login activity and finish this one
+                finish();
+            }
+        }, intentFilter);
+
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        Button button = (Button) findViewById(R.id.btnSave);
+       /* Button button = (Button) findViewById(R.id.btnSave);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
 
             }
-        });
+        });*/
         Intent intent = getIntent();
         String EXTRA_MESSAGE = "MESSAGE";
         final String userName = intent.getStringExtra(EXTRA_MESSAGE);
@@ -112,6 +126,16 @@ public class ViewActivity extends Activity{
         });
     }
 
+    public void viewAccount(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Account")){
+            Intent intent = new Intent(this, ViewActivity.class);
+            intent.putExtra("MESSAGE", ParseUser.getCurrentUser().getUsername());
+            startActivity(intent);
+        }
+    }
+
     public void addListenerOnButton() {
 
         //   ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -141,6 +165,15 @@ public class ViewActivity extends Activity{
         }
     }
 
+    public void myBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Books")){
+            Intent intent = new Intent(this, my_book.class);
+            startActivity(intent);
+        }
+    }
+
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -155,17 +188,12 @@ public class ViewActivity extends Activity{
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+            sendBroadcast(broadcastIntent);
+            /*ParseUser.logOut();
             Intent intent = new Intent(this, Main2Activity.class);
-            startActivity(intent);
-        }
-    }
-
-    public void myBooks(View view){
-        String button_text;
-        button_text = ((Button) view).getText().toString();
-        if(button_text.equals("My Books")){
-            Intent intent = new Intent(this, my_book.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 

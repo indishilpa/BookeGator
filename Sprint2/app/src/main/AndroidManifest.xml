@@ -13,15 +13,20 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <permission android:protectionLevel="signature"
-        android:name="com.sqlite.sqliteapp.permission.C2D_MESSAGE" />
+
+    <permission
+        android:name="com.sqlite.sqliteapp.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
     <uses-permission android:name="com.sqlite.sqliteapp.permission.C2D_MESSAGE" />
+
     <application
         android:name=".ParseApplication"
         android:allowBackup="true"
@@ -33,6 +38,7 @@
             android:label="@string/title_activity_main2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,11 +47,14 @@
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden|adjustPan" >
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".MainActivity3"
@@ -55,6 +64,29 @@
             android:name=".ViewActivity"
             android:label="viewScreen"
             android:windowSoftInputMode="adjustPan|adjustResize" >
+        </activity>
+        <activity
+            android:name=".book_upload"
+            android:label="@string/title_activity_book_details"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".find_books"
+            android:label="@string/title_activity_find_books"
+            android:windowSoftInputMode="adjustPan|adjustResize" >
+        </activity>
+        <activity
+            android:name=".BookDetails"
+            android:label="@string/title_activity_book_details"
+            android:windowSoftInputMode="adjustPan|adjustResize" >
+        </activity>
+        <activity
+            android:name=".my_book"
+            android:label="@string/title_activity_my_book" >
+        </activity>
+        <activity
+            android:name=".my_book"
+            android:label="@string/title_activity_my_book" >
         </activity>
 
         <service android:name="com.parse.PushService" />
@@ -75,33 +107,13 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-
                 <category android:name="com.sqlite.sqliteapp" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name=".book_upload"
-            android:label="@string/title_activity_book_details"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
-        </activity>
-        <activity
-            android:name=".find_books"
-            android:label="@string/title_activity_find_books"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
-        </activity>
-        <activity
-            android:name=".BookDetails"
-            android:label="@string/title_activity_book_details"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
-        </activity>
-        <activity
-            android:name=".my_book"
-            android:label="@string/title_activity_my_book" >
-        </activity>
-        <activity
-            android:name=".my_book"
-            android:label="@string/title_activity_my_book" >
+            android:name=".IssueRequest"
+            android:label="@string/title_activity_issue_request" >
         </activity>
     </application>
 

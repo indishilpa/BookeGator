@@ -22,7 +22,9 @@ import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
@@ -173,7 +175,7 @@ public class BookDetails extends AppCompatActivity {
     }
 
 
-    public void issueRequest(final String oid){
+    /*public void issueRequest(final String oid){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
         Log.d("tag", "inside");
         query.getInBackground(oid, new GetCallback<ParseObject>() {
@@ -186,6 +188,57 @@ public class BookDetails extends AppCompatActivity {
                     try {
                         issuedBooks.save();
                         Toast.makeText(getApplicationContext(), "Issued.",
+                                Toast.LENGTH_LONG).show();
+                        ParsePush parsePush = new ParsePush();
+                        ParseQuery pQuery = ParseInstallation.getQuery(); // <-- Installation query
+                        pQuery.whereEqualTo("channels", object.getParseObject("Owner1").getObjectId()); // <-- you'll probably want to target someone that's not the current user, so modify accordingly
+                        parsePush.sendMessageInBackground(ParseUser.getCurrentUser().get("ActualName") + " has requested a book. Tap to see...", pQuery);
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+    }*/
+    public void issueRequest(final String oid){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
+        Log.d("tag", "inside");
+        query.getInBackground(oid, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    // ParseObject issuedBooks = new ParseObject("IssuedBooks");
+                    object.put("Issued_By", ParseUser.getCurrentUser());
+                    object.put("Issued", true);
+                    try {
+                        object.save();
+                        Toast.makeText(getApplicationContext(), "Issued",
+                                Toast.LENGTH_LONG).show();
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+    public void wishlist(final String oid){
+        //  Toast.makeText(getApplicationContext(), "Added to wishlist",
+        //        Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), ParseUser.getCurrentUser().toString(),
+        //    Toast.LENGTH_LONG).show();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
+        Log.d("tag", "inside");
+        query.getInBackground(oid, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    //  ParseObject wishedbooks = new ParseObject("wishedbooks");
+                    object.put("wished_by", ParseUser.getCurrentUser());
+                    // wishedbooks.put("BookObject", object);
+                    //  wishedbooks.put("Title", object.get("Title"));
+                    try {
+                        object.save();
+                        Toast.makeText(getApplicationContext(), "Added to wishlist!",
                                 Toast.LENGTH_LONG).show();
                     } catch (ParseException e1) {
                         e1.printStackTrace();
@@ -213,6 +266,14 @@ public class BookDetails extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("My Books")){
             Intent intent = new Intent(this, my_book.class);
+            startActivity(intent);
+        }
+    }
+    public void myIssueRequests(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Issue Requests")){
+            Intent intent = new Intent(this, IssueRequest.class);
             startActivity(intent);
         }
     }

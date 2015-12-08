@@ -9,4 +9,5 @@
     <string name="title_activity_book_details">BookDetails</string>
     <string name="title_activity_find_books">find_books</string>
     <string name="title_activity_my_book">Mybooks</string>
+    <string name="title_activity_issue_request">IssueRequest</string>
 </resources>

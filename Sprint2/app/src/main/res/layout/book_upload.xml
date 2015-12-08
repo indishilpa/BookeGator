@@ -27,7 +27,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="openBook"
+            android:onClick="toggleMenu"
             android:text="Add Book"
             android:height="60sp"
             android:textSize="18sp" />
@@ -51,7 +51,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
+            android:onClick="myBooks"
             android:text="My Books"
             android:height="60sp"
             android:textSize="18sp" />

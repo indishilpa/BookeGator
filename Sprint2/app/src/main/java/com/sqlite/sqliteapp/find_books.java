@@ -68,6 +68,7 @@ public class find_books extends ListActivity {
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                names.clear();
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
                 final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
 
@@ -79,7 +80,8 @@ public class find_books extends ListActivity {
                     public void done(List<ParseObject> objects, ParseException e) {
                         if (e == null) {
                             int i = 0;
-                            names.clear();
+                            //names.clear();
+                            objectid.clear();
                             for (ParseObject nameObject : objects) {
                                 String name = nameObject.get("Title").toString();
                                 String author = nameObject.get("Author").toString();
@@ -88,22 +90,10 @@ public class find_books extends ListActivity {
                                 names.add(i, disp);
                                 objectid.add(nameObject.getObjectId());
 
+
                                 i++;
                             }
-                            /*adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
-                            getListView().setAdapter(adapter);
-                            getListView().setOnItemClickListener(
-                                    new AdapterView.OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                            Intent intent = new Intent(parent.getContext(), BookDetails.class);
-                                            intent.putExtra("oid", objectid.get(position));
-                                            startActivityForResult(intent, 0);
 
-                                        }
-                                    }
-                            );
-*/
 
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
@@ -123,14 +113,17 @@ public class find_books extends ListActivity {
                                 String name = nameObject.get("Title").toString();
                                 String author = nameObject.get("Author").toString();
                                 String disp = name + " By " + author;
-                                Log.d("Title", name);
+                                // Log.d("Author", author);
                                 names.add(i, disp);
+                                Log.d("Author", disp);
                                 objectid.add(nameObject.getObjectId());
 
                                 i++;
                             }
+
                             adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
                             getListView().setAdapter(adapter);
+                            // Log.d("Author", adapter.getItem(1));
                             getListView().setOnItemClickListener(
                                     new AdapterView.OnItemClickListener() {
                                         @Override
@@ -144,14 +137,15 @@ public class find_books extends ListActivity {
                             );
 
 
+
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
                         }
                     }
                 });
 
-                names.clear();
-                return false;
+                //names.clear();
+                return true;
             }
 
             @Override
