@@ -72,18 +72,17 @@ public class my_book extends ListActivity {
                     }
                     adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
                     getListView().setAdapter(adapter);
-                    /*getListView().setOnItemClickListener(
+                    getListView().setOnItemClickListener(
                             new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent intent = new Intent(parent.getContext(), BookDetails.class);
+                                    Intent intent = new Intent(parent.getContext(), IssueRequest.class);
                                     intent.putExtra("oid", objectid.get(position));
                                     startActivityForResult(intent, 0);
 
                                 }
                             }
                     );
-*/
 
                 } else {
                     // Log.d("Author", "Error: " + e.getMessage());
@@ -120,6 +119,23 @@ public class my_book extends ListActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Search Books")){
             Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
+            startActivity(intent);
+        }
+    }
+
+    public void myBooks(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("My Books")){
+            Intent intent = new Intent(this, my_book.class);
             startActivity(intent);
         }
     }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.sqlite.sqliteapp.Views.MenuFly;
+//import com.sqlite.sqliteapp.Views.wish;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ public class find_books extends ListActivity {
     ArrayList<String> objectid = new ArrayList<String>();
 
     ArrayList<String> names = new ArrayList<String>();
+    boolean searchByAutor = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,44 +46,39 @@ public class find_books extends ListActivity {
         this.root = (MenuFly) this.getLayoutInflater().inflate(R.layout.activity_find_books, null);
         setContentView(root);
 
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.package.ACTION_LOGOUT");
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.d("onReceive", "Logout in progress");
-                //At this point you should start the login activity and finish this one
-                finish();
-            }
-        }, intentFilter);
-
-
         TextView tx = (TextView) findViewById(R.id.Title);
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
         tx.setTypeface(cd);
 
         search = (SearchView)findViewById(R.id.searchView);
         search.setIconifiedByDefault(false);
-        search.setQueryHint("Enter Book Title or Author");
+        search.setQueryHint("Search For Book Here...");
 
 
         //*** setOnQueryTextListener ***
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                names.clear();
                 final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("UploadBooks");
-                final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
+                //final ParseQuery<ParseObject> query3 = ParseQuery.getQuery("UploadBooks");
 
-                query2.whereContains("TitleToLowerCase", search.getQuery().toString().toLowerCase());
-                query3.whereContains("AuthorToLowerCase", search.getQuery().toString().toLowerCase());
+                if(searchByAutor == true){
+                    Log.d("Author", " seach by author is " + searchByAutor );
+                    query2.whereContains("AuthorToLowerCase", search.getQuery().toString().toLowerCase());
+                }else if (searchByAutor == false){
+                    Log.d("Author", " seach by author is " + searchByAutor );
+                    query2.whereContains("TitleToLowerCase", search.getQuery().toString().toLowerCase());
+                }else{
+                    Log.d("Author", " seach by author is else case " + searchByAutor );
+                    query2.whereContains("AuthorToLowerCase", search.getQuery().toString().toLowerCase());
+                }
 
                 query2.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
                         if (e == null) {
                             int i = 0;
-                            //names.clear();
+                            names.clear();
                             objectid.clear();
                             for (ParseObject nameObject : objects) {
                                 String name = nameObject.get("Title").toString();
@@ -89,46 +87,18 @@ public class find_books extends ListActivity {
                                 Log.d("Title", name);
                                 names.add(i, disp);
                                 objectid.add(nameObject.getObjectId());
-
-
-                                i++;
-                            }
-
-
-                        } else {
-                            Log.d("Author", "Error: " + e.getMessage());
-                        }
-
-                    }
-                });
-
-                query3.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(List<ParseObject> objects, ParseException e) {
-                        if (e == null) {
-                            // ArrayList<String> names = new ArrayList<String>();
-                            int i = 0;
-                            // names.clear();
-                            for (ParseObject nameObject : objects) {
-                                String name = nameObject.get("Title").toString();
-                                String author = nameObject.get("Author").toString();
-                                String disp = name + " By " + author;
-                                // Log.d("Author", author);
-                                names.add(i, disp);
-                                Log.d("Author", disp);
-                                objectid.add(nameObject.getObjectId());
-
+                                Log.d("Test   ", nameObject.getObjectId());
                                 i++;
                             }
 
                             adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
                             getListView().setAdapter(adapter);
-                            // Log.d("Author", adapter.getItem(1));
                             getListView().setOnItemClickListener(
                                     new AdapterView.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                             Intent intent = new Intent(parent.getContext(), BookDetails.class);
+                                            Log.d("adapter", objectid.get(position));
                                             intent.putExtra("oid", objectid.get(position));
                                             startActivityForResult(intent, 0);
 
@@ -136,16 +106,15 @@ public class find_books extends ListActivity {
                                     }
                             );
 
-
-
                         } else {
                             Log.d("Author", "Error: " + e.getMessage());
                         }
+
                     }
                 });
 
-                //names.clear();
-                return true;
+                names.clear();
+                return false;
             }
 
             @Override
@@ -158,6 +127,31 @@ public class find_books extends ListActivity {
 
         });
 
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.seachByAuthor:
+                if (checked)
+                    Log.d("Title", "Searching by author");
+                    searchByAutor = true;
+                    names.clear();
+                    adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
+                    getListView().setAdapter(adapter);
+                break;
+            case R.id.searchByTitle:
+                if (checked)
+                    Log.d("Title", "Searching by title");
+                    searchByAutor = false;
+                    names.clear();
+                    adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, names);
+                    getListView().setAdapter(adapter);
+                break;
+        }
     }
 
     public void toggleMenu(View v){
@@ -177,14 +171,11 @@ public class find_books extends ListActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Logout")){
             ParseUser.logOut();
-            Intent broadcastIntent = new Intent();
-            broadcastIntent.setAction("com.package.ACTION_LOGOUT");
-            sendBroadcast(broadcastIntent);
-            /*Intent intent = new Intent(this, Main2Activity.class);
+            Intent intent = new Intent(this, Main2Activity.class);
             startActivity(intent);
-            finish();*/
         }
     }
+
     public void viewAccount(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -194,6 +185,7 @@ public class find_books extends ListActivity {
             startActivity(intent);
         }
     }
+
     public void searchBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
@@ -203,13 +195,20 @@ public class find_books extends ListActivity {
         }
     }
 
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
+            startActivity(intent);
+        }
+    }
     public void myBooks(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("My Books")){
             Intent intent = new Intent(this, my_book.class);
             startActivity(intent);
-
         }
     }
 

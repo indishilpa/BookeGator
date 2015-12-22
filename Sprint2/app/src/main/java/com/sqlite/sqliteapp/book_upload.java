@@ -36,6 +36,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.sqlite.sqliteapp.Views.MenuFly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.io.ByteArrayOutputStream;
@@ -221,10 +222,12 @@ public class book_upload extends AppCompatActivity {
                             ParseUser user = ParseUser.getCurrentUser();
                             uploadBooks.put("Owner1", user);
 
+                            //ArrayList<ParseUser> issuers = new ArrayList<ParseUser>();
+                            uploadBooks.put("Issued_Request_List", new ArrayList<ParseUser>());
+
                             ParseInstallation installation = ParseInstallation.getCurrentInstallation();
                             installation.add("channels", user.getObjectId().toString());
                             installation.saveInBackground();
-
 
                             int x = user.getInt("BooksNum");
 
@@ -275,6 +278,16 @@ public class book_upload extends AppCompatActivity {
 
         }
     }
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
+            startActivity(intent);
+        }
+    }
+
+
 
     public void logOut(View view){
         String button_text;

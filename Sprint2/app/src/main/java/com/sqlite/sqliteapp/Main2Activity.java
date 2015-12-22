@@ -69,11 +69,7 @@ public class Main2Activity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-
                             try {
-
-
                                 final SocketFactory socketFactory;
                                 final SSLUtil sslUtil = new SSLUtil(null,new TrustAllTrustManager());
                                 socketFactory = sslUtil.createSSLSocketFactory();
@@ -100,8 +96,6 @@ public class Main2Activity extends AppCompatActivity {
                                        Intent intent = new Intent(v.getContext(), MainActivity.class);
                                        intent.putExtra("ufid", name);
                                        startActivityForResult(intent, 0);
-
-
                                    } else {
                                        ParseUser.logInInBackground(name + "",
                                                "213" + "", new LogInCallback() {

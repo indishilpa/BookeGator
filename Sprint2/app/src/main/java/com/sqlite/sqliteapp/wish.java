@@ -119,7 +119,14 @@ public class wish extends ListActivity {
             startActivity(intent);
         }
     }
-
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
+            startActivity(intent);
+        }
+    }
     public void logOut(View view){
         String button_text;
         button_text = ((Button) view).getText().toString();

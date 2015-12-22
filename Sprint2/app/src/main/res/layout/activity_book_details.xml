@@ -43,10 +43,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wish list"
+            android:onClick="wishBook"
+            android:text="Wish Book"
             android:height="60sp"
-            android:textSize="18sp"
-            android:onClick="wishlist"/>
+            android:textSize="18sp" />
 
         <Button
             android:layout_width="match_parent"
@@ -55,15 +55,7 @@
             android:text="My Books"
             android:height="60sp"
             android:textSize="18sp" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="myIssueRequests"
-            android:text="My Issue Requests"
-            android:height="60sp"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
-            android:textSize="18sp" />
+
 
         <Button
             android:layout_width="match_parent"
@@ -310,8 +302,14 @@
                     android:text="Issue Request"
                     android:id="@+id/issuerequest"
                     android:layout_gravity="center"
-                    android:alpha="0.7" />
-
+                    android:alpha="0.7" android:onClick="issueRequest"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="add to wishlist"
+                    android:id="@+id/wishlist"
+                    android:layout_gravity="center"
+                    android:alpha="0.7"  android:onClick="wishlist"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

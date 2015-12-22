@@ -43,10 +43,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
-            android:text="Wish list"
+            android:onClick="wishBook"
+            android:text="Wish Book"
             android:height="60sp"
             android:textSize="18sp" />
+
+
 
         <Button
             android:layout_width="match_parent"
@@ -70,6 +72,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
 
         <LinearLayout
@@ -113,6 +116,7 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
@@ -138,29 +142,6 @@
             android:id="@+id/scrollView"
             android:fillViewport="true">
 
-            <!-- <RatingBar
-                   android:id="@+id/ratingBar"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:numStars="5"
-                   android:stepSize="0.5"
-                   android:rating="0.0" />
-
-               <TextView
-                   android:id="@+id/lblResult"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Result:"
-                   android:textAppearance="?android:attr/textAppearanceLarge" />
-
-               <TextView
-                   android:id="@+id/txtRatingValue"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text=""
-                   android:textAppearance="?android:attr/textAppearanceSmall" />
-           -->
-
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
@@ -169,19 +150,19 @@
                 android:id="@+id/bottomsection"
                 android:background="#ffffe6">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <RelativeLayout android:layout_weight="1.5" android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:gravity="center" >
                     <com.parse.ParseImageView
                         android:id="@+id/icon"
-                        android:layout_width="290sp"
-                        android:layout_height="210sp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"  android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true" />
+                        />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -196,6 +177,38 @@
                     android:focusable="true"
                     >
 
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name"
+                        android:textColor="#372c24"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="16dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/nameText"    android:singleLine="true" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp" android:inputType="textPersonName"
+                        android:layout_marginTop="16dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" android:cursorVisible="false"
+                        android:id="@+id/nameV"    android:singleLine="true"  android:visibility = "gone"/>
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="#372c24"
+                        tools:ignore="HardcodedText"
+                        />
+
+
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -203,64 +216,76 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Name -"
-                            android:textColor="#372c24"
-                            tools:ignore="HardcodedText"
-                            android:id="@+id/name" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:id="@+id/nameV"    android:singleLine="true"
-                            android:layout_marginLeft="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Email -"
-                            android:textColor="#372c24"
-                            tools:ignore="HardcodedText"
-                            android:id="@+id/email" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:id="@+id/emailV"    android:singleLine="true"
-                            android:layout_marginLeft="10dp" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Phone Number -"
-                            android:textColor="#372c24"
-                            tools:ignore="HardcodedText"
-                            android:id="@+id/phone" />
-
-                        <TextView
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:id="@+id/phoneV" />
+                            android:layout_marginTop="10dp"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/emailText" />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/buttonEmail"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@android:drawable/ic_dialog_email"
+                            android:background="#ffffe6"
+                            android:paddingLeft="10dp" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp" android:cursorVisible="false"
+                            android:layout_marginTop="10dp" android:inputType="textEmailAddress"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/emailV" android:visibility = "gone" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile number"
+                        android:textColor="#372c24"
+                        tools:ignore="HardcodedText" />
+                    <!--<TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/emailText" />
+-->
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp" android:inputType="phone"
+                            android:layout_marginTop="10dp" android:cursorVisible="false"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/phoneV" android:visibility = "gone"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/phoneText"  />
+
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/buttonCall"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@android:drawable/ic_menu_call"
+                            android:background="#ffffe6"
+                            android:contextClickable="false"
+                            android:paddingLeft="10dp" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -279,18 +304,21 @@
 
                     </LinearLayout>
 
-                   <!-- <Button
-                        android:id="@+id/btnSave"
-                        android:layout_width="fill_parent"
+                    <Button
+                        android:id="@+id/btnEdit"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dip"
                         android:text="Edit Details"
-                        tools:ignore="HardcodedText" />-->
+                        tools:ignore="HardcodedText" android:visibility="invisible"/>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"></LinearLayout>
+                    <Button
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dip"
+                        android:text="Submit Details"
+                        tools:ignore="HardcodedText" android:visibility="invisible"/>
 
                 </LinearLayout>
             </LinearLayout>

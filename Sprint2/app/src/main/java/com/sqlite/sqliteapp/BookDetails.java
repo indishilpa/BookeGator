@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
@@ -36,7 +37,7 @@ public class BookDetails extends AppCompatActivity {
     MenuFly root;
 
     TextView textTitle, textAuthor, textEdition, textYear, textDeposit, textISBN;
-    Button contactOwner, issueRequestButton;
+    Button contactOwner, issueRequestButton, wishlist;
 
 
     @Override
@@ -65,6 +66,7 @@ public class BookDetails extends AppCompatActivity {
         textISBN = (TextView)findViewById(R.id.isbn);
         textDeposit = (TextView)findViewById(R.id.deposit);
         issueRequestButton = (Button)findViewById(R.id.issuerequest);
+        wishlist = (Button)findViewById(R.id.wishlist);
         final String objectId = getIntent().getExtras().getString("oid");
         TextView tx = (TextView) findViewById(R.id.Title);
         Typeface cd = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
@@ -80,7 +82,13 @@ public class BookDetails extends AppCompatActivity {
                 if (e == null) {
                     ParseFile image = object.getParseFile("image");
                     imageView.setParseFile(image);
-
+                    if (object.getBoolean("Issued")) {
+                        issueRequestButton.setVisibility(View.GONE);
+                    }
+                    if((object.getParseObject("Owner1").getObjectId().equals(ParseUser.getCurrentUser().getObjectId()))){
+                        issueRequestButton.setVisibility(View.GONE);
+                        wishlist.setVisibility(View.GONE);
+                    }
                     imageView.loadInBackground(new GetDataCallback() {
                         public void done(byte[] data, ParseException e) {
                             // The image is loaded and displayed!
@@ -95,6 +103,13 @@ public class BookDetails extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 contactOwner(objectId);
+            }
+        });
+        final Button wishlist = (Button)findViewById(R.id.wishlist);
+        wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                wishlist(objectId);
             }
         });
 
@@ -159,6 +174,9 @@ public class BookDetails extends AppCompatActivity {
                     textTitle.setText(e.toString());
 
                 }
+                if (object.getBoolean("Issued")) {
+                    issueRequestButton.setClickable(false);
+                }
             }
         });
 
@@ -175,7 +193,7 @@ public class BookDetails extends AppCompatActivity {
     }
 
 
-    /*public void issueRequest(final String oid){
+  /*  public void issueRequest(final String oid){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
         Log.d("tag", "inside");
         query.getInBackground(oid, new GetCallback<ParseObject>() {
@@ -189,10 +207,6 @@ public class BookDetails extends AppCompatActivity {
                         issuedBooks.save();
                         Toast.makeText(getApplicationContext(), "Issued.",
                                 Toast.LENGTH_LONG).show();
-                        ParsePush parsePush = new ParsePush();
-                        ParseQuery pQuery = ParseInstallation.getQuery(); // <-- Installation query
-                        pQuery.whereEqualTo("channels", object.getParseObject("Owner1").getObjectId()); // <-- you'll probably want to target someone that's not the current user, so modify accordingly
-                        parsePush.sendMessageInBackground(ParseUser.getCurrentUser().get("ActualName") + " has requested a book. Tap to see...", pQuery);
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }
@@ -208,12 +222,28 @@ public class BookDetails extends AppCompatActivity {
             public void done(ParseObject object, ParseException e) {
                 if (e == null) {
                     // ParseObject issuedBooks = new ParseObject("IssuedBooks");
-                    object.put("Issued_By", ParseUser.getCurrentUser());
-                    object.put("Issued", true);
+                    //object.put("Issued_By", ParseUser.getCurrentUser());
+
+                    ArrayList<ParseUser> issuers = (ArrayList<ParseUser>) object.get("Issued_Request_List");
+
+//                    String s = object.getString("Issued_By");
+                    if (issuers==null || issuers.isEmpty()) {
+                        issuers = new ArrayList<ParseUser>();
+                        issuers.add(ParseUser.getCurrentUser());
+                        object.put("Issued_Request_List", issuers);
+                    }else{
+                        issuers.add(ParseUser.getCurrentUser());
+                        object.put("Issued_Request_List", issuers);
+                    }
+                   // object.put("Issued", true);
                     try {
                         object.save();
                         Toast.makeText(getApplicationContext(), "Issued",
                                 Toast.LENGTH_LONG).show();
+                        ParsePush parsePush = new ParsePush();
+                        ParseQuery pQuery = ParseInstallation.getQuery(); // <-- Installation query
+                        pQuery.whereEqualTo("channels", object.getParseObject("Owner1").getObjectId()); // <-- you'll probably want to target someone that's not the current user, so modify accordingly
+                        parsePush.sendMessageInBackground(ParseUser.getCurrentUser().get("ActualName") + " has requested a book. Tap to see...", pQuery);
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }
@@ -222,10 +252,6 @@ public class BookDetails extends AppCompatActivity {
         });
     }
     public void wishlist(final String oid){
-        //  Toast.makeText(getApplicationContext(), "Added to wishlist",
-        //        Toast.LENGTH_LONG).show();
-        //Toast.makeText(getApplicationContext(), ParseUser.getCurrentUser().toString(),
-        //    Toast.LENGTH_LONG).show();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("UploadBooks");
         Log.d("tag", "inside");
         query.getInBackground(oid, new GetCallback<ParseObject>() {
@@ -240,6 +266,11 @@ public class BookDetails extends AppCompatActivity {
                         object.save();
                         Toast.makeText(getApplicationContext(), "Added to wishlist!",
                                 Toast.LENGTH_LONG).show();
+                     /*   ParsePush parsePush = new ParsePush();
+                        ParseQuery query = new ParseQuery("User");
+                        query.whereEqualTo("username", object.getParseUser("Owner1").getUsername());
+                        pQuery.whereMatchesQuery("", query);
+                        parsePush.sendMessageInBackground("Only for special people", pQuery);*/
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }
@@ -283,6 +314,15 @@ public class BookDetails extends AppCompatActivity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Search Books")){
             Intent intent = new Intent(this, find_books.class);
+            startActivity(intent);
+        }
+    }
+
+    public void wishBook(View view){
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Wish Book")){
+            Intent intent = new Intent(this, wish.class);
             startActivity(intent);
         }
     }

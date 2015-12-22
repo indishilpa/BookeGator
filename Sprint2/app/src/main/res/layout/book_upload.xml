@@ -43,8 +43,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
-            android:text="Wish list"
+            android:onClick="wishBook"
+            android:text="Wish Book"
             android:height="60sp"
             android:textSize="18sp" />
 

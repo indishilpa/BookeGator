@@ -43,10 +43,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"
-            android:text="Wish list"
+            android:onClick="wishBook"
+            android:text="Wish Book"
             android:height="60sp"
             android:textSize="18sp" />
+
+
 
         <Button
             android:layout_width="match_parent"
@@ -139,6 +141,40 @@
             android:layout_height="match_parent"
             android:id="@+id/bottomsection"
             android:background="#ffffe6">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:background="#e5e5ff">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:orientation="horizontal"
+                    android:background="#81d8ff">
+
+                    <RadioButton
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Search By Author"
+                        android:id="@+id/seachByAuthor"
+                        android:checked="true"
+                        android:onClick="onRadioButtonClicked"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search By Title"
+                        android:id="@+id/searchByTitle"
+                        android:checked="false"
+                        android:layout_gravity="right"
+                        android:onClick="onRadioButtonClicked"/>
+
+                </RadioGroup>
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
